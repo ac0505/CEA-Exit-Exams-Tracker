@@ -105,7 +105,7 @@ namespace StudentGradeTracker.User_Controls
             flpActiveFiltersExams.Location = new System.Drawing.Point(53, 76);
             flpActiveFiltersExams.Margin = new System.Windows.Forms.Padding(0);
             flpActiveFiltersExams.MaximumSize = new System.Drawing.Size(895, 45);
-            flpActiveFiltersExams.MinimumSize = new System.Drawing.Size(895, 0);
+            flpActiveFiltersExams.MinimumSize = System.Drawing.Size.Empty;
             flpActiveFiltersExams.Name = "flpActiveFiltersExams";
             flpActiveFiltersExams.Size = new System.Drawing.Size(895, 0);
             flpActiveFiltersExams.TabIndex = 2;
@@ -197,7 +197,7 @@ namespace StudentGradeTracker.User_Controls
             pnlFilterCourses.Controls.Add(btnApply);
             pnlFilterCourses.CustomizableEdges = customizableEdges17;
             pnlFilterCourses.FillColor = System.Drawing.Color.White;
-            pnlFilterCourses.Location = new System.Drawing.Point(585, 72);
+            pnlFilterCourses.Location = new System.Drawing.Point(592, 72);
             pnlFilterCourses.Name = "pnlFilterCourses";
             pnlFilterCourses.ShadowDecoration.BorderRadius = 20;
             pnlFilterCourses.ShadowDecoration.Color = System.Drawing.Color.FromArgb(80, 0, 0, 0);
@@ -402,7 +402,7 @@ namespace StudentGradeTracker.User_Controls
             Controls.Add(dgvExams);
             Controls.Add(btnFilterCourses);
             Controls.Add(txtSearchExams);
-            MinimumSize = new System.Drawing.Size(1000, 504);
+            MinimumSize = new System.Drawing.Size(640, 400);
             Name = "Exams";
             Size = new System.Drawing.Size(1000, 504);
             ((System.ComponentModel.ISupportInitialize)dgvExams).EndInit();

@@ -83,10 +83,10 @@
             btnMinimize.Image = (Image)resources.GetObject("btnMinimize.Image");
             btnMinimize.ImageSize = new Size(15, 15);
             btnMinimize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnMinimize.Location = new Point(901, 18);
+            btnMinimize.Location = new Point(880, 16);
             btnMinimize.Name = "btnMinimize";
             btnMinimize.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btnMinimize.Size = new Size(26, 20);
+            btnMinimize.Size = new Size(28, 24);
             btnMinimize.TabIndex = 4;
             btnMinimize.Click += btnMinimize_Click;
             //
@@ -94,15 +94,16 @@
             // 
             btnMaximize.CustomizableEdges = customizableEdges11;
             btnMaximize.FillColor = Color.Transparent;
-            btnMaximize.Font = new Font("Segoe MDL2 Assets", 10F);
+            btnMaximize.Font = new Font("Segoe UI", 9F);
             btnMaximize.ForeColor = Color.White;
+            btnMaximize.HoverState.FillColor = Color.FromArgb(30, 41, 59);
             btnMaximize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnMaximize.Location = new Point(923, 17);
+            btnMaximize.Location = new Point(916, 16);
             btnMaximize.Name = "btnMaximize";
             btnMaximize.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            btnMaximize.Size = new Size(20, 22);
+            btnMaximize.Size = new Size(28, 24);
             btnMaximize.TabIndex = 5;
-            btnMaximize.Text = "\uE922";
+            btnMaximize.Text = "";
             btnMaximize.Click += btnMaximize_Click;
             //
             // btnClose
@@ -117,10 +118,10 @@
             btnClose.ForeColor = Color.White;
             btnClose.Image = (Image)resources.GetObject("btnClose.Image");
             btnClose.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnClose.Location = new Point(948, 18);
+            btnClose.Location = new Point(952, 16);
             btnClose.Name = "btnClose";
             btnClose.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            btnClose.Size = new Size(20, 20);
+            btnClose.Size = new Size(28, 24);
             btnClose.TabIndex = 6;
             btnClose.Click += btnClose_Click;
             // 
@@ -161,7 +162,7 @@
             // 
             // btnExams
             // 
-            btnExams.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnExams.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             btnExams.CustomBorderColor = Color.FromArgb(5, 11, 112);
             btnExams.CustomBorderThickness = new Padding(0, 0, 0, 4);
             btnExams.CustomizableEdges = customizableEdges5;
@@ -183,7 +184,7 @@
             // 
             // btnStudents
             // 
-            btnStudents.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnStudents.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             btnStudents.CustomBorderColor = Color.FromArgb(5, 11, 112);
             btnStudents.CustomBorderThickness = new Padding(0, 0, 0, 4);
             btnStudents.CustomizableEdges = customizableEdges7;
@@ -205,7 +206,7 @@
             // 
             // btnDashboard
             // 
-            btnDashboard.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnDashboard.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             btnDashboard.CustomBorderColor = Color.FromArgb(5, 11, 112);
             btnDashboard.CustomBorderThickness = new Padding(0, 0, 0, 4);
             btnDashboard.CustomizableEdges = customizableEdges9;
@@ -238,12 +239,12 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(248, 250, 252);
-            ClientSize = new Size(1000, 624);
+            ClientSize = new Size(1200, 700);
             Controls.Add(pnlContainer);
             Controls.Add(panel2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
-            MinimumSize = new Size(1000, 624);
+            MinimumSize = new Size(680, 520);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";

@@ -14,6 +14,7 @@ namespace StudentGradeTracker.User_Controls
         {
             InitializeComponent();
             SetupGridColumns();
+            ApplyVisualStyle();
             LayoutSummaryCards();
 
             txtSearch.TextChanged += TxtSearch_TextChanged;
@@ -27,8 +28,8 @@ namespace StudentGradeTracker.User_Controls
         {
             if (pnlCardsContainer == null) return;
 
-            int gap = 16;
-            int cardWidth = Math.Max(160, (pnlCardsContainer.ClientSize.Width - (gap * 3)) / 4);
+            int gap = 12;
+            int cardWidth = Math.Max(150, (pnlCardsContainer.ClientSize.Width - (gap * 3)) / 4);
             var cards = new[] { pnlCardTotal, pnlCardPassed, pnlCardCompletion, pnlCardRate };
 
             for (int index = 0; index < cards.Length; index++)
@@ -36,6 +37,28 @@ namespace StudentGradeTracker.User_Controls
                 cards[index].Location = new Point(index * (cardWidth + gap), 0);
                 cards[index].Size = new Size(cardWidth, pnlCardsContainer.ClientSize.Height - 5);
             }
+        }
+
+        private void ApplyVisualStyle()
+        {
+            BackColor = Color.FromArgb(241, 245, 249);
+            pnlCardsContainer.BackColor = Color.Transparent;
+
+            var cards = new[] { pnlCardTotal, pnlCardPassed, pnlCardCompletion, pnlCardRate };
+            foreach (var card in cards)
+            {
+                card.BorderRadius = 12;
+                card.BorderThickness = 1;
+                card.ShadowDecoration.Enabled = true;
+                card.ShadowDecoration.Depth = 8;
+            }
+
+            pnlCardTotal.FillColor = Color.FromArgb(255, 255, 255);
+            pnlCardPassed.FillColor = Color.FromArgb(240, 253, 250);
+            pnlCardCompletion.FillColor = Color.FromArgb(255, 251, 235);
+            pnlCardRate.FillColor = Color.FromArgb(255, 255, 255);
+            dgvDashboard.BorderStyle = BorderStyle.None;
+            dgvDashboard.GridColor = Color.FromArgb(226, 232, 240);
         }
 
         private void SetupGridColumns()

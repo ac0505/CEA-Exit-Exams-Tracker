@@ -320,7 +320,7 @@ namespace StudentGradeTracker.User_Controls
             Controls.Add(dgvDashboard);
             Controls.Add(lblSectionTitle);
             Controls.Add(pnlCardsContainer);
-            MinimumSize = new System.Drawing.Size(1000, 504);
+            MinimumSize = new System.Drawing.Size(640, 400);
             Name = "Dashboard";
             Size = new System.Drawing.Size(1000, 504);
             pnlCardsContainer.ResumeLayout(false);

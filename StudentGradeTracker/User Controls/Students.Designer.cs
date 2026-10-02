@@ -51,6 +51,8 @@ namespace StudentGradeTracker
             btnAddStudent = new Guna.UI2.WinForms.Guna2Button();
             btnUpload = new Guna.UI2.WinForms.Guna2Button();
             btnFilter = new Guna.UI2.WinForms.Guna2Button();
+            btnSelect = new Guna.UI2.WinForms.Guna2Button();
+            btnCancelSelection = new Guna.UI2.WinForms.Guna2Button();
             btnMassUpdate = new Guna.UI2.WinForms.Guna2Button();
             btnMassDelete = new Guna.UI2.WinForms.Guna2Button();
             flpActiveFilters = new System.Windows.Forms.FlowLayoutPanel();
@@ -173,6 +175,35 @@ namespace StudentGradeTracker
             btnFilter.Text = "Filter";
 
             // 
+            // btnSelect
+            // 
+            btnSelect.BorderRadius = 4;
+            btnSelect.FillColor = System.Drawing.Color.FromArgb(30, 64, 175);
+            btnSelect.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            btnSelect.ForeColor = System.Drawing.Color.White;
+            btnSelect.Location = new System.Drawing.Point(770, 30);
+            btnSelect.Name = "btnSelect";
+            btnSelect.Size = new System.Drawing.Size(82, 36);
+            btnSelect.TabIndex = 6;
+            btnSelect.Text = "Select";
+
+            // 
+            // btnCancelSelection
+            // 
+            btnCancelSelection.BorderColor = System.Drawing.Color.FromArgb(148, 163, 184);
+            btnCancelSelection.BorderRadius = 4;
+            btnCancelSelection.BorderThickness = 1;
+            btnCancelSelection.FillColor = System.Drawing.Color.White;
+            btnCancelSelection.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            btnCancelSelection.ForeColor = System.Drawing.Color.FromArgb(51, 65, 85);
+            btnCancelSelection.Location = new System.Drawing.Point(770, 30);
+            btnCancelSelection.Name = "btnCancelSelection";
+            btnCancelSelection.Size = new System.Drawing.Size(82, 36);
+            btnCancelSelection.TabIndex = 7;
+            btnCancelSelection.Text = "Cancel";
+            btnCancelSelection.Visible = false;
+
+            // 
             // flpActiveFilters
             // 
             flpActiveFilters.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
@@ -181,7 +212,7 @@ namespace StudentGradeTracker
             flpActiveFilters.Location = new System.Drawing.Point(53, 76);
             flpActiveFilters.Margin = new System.Windows.Forms.Padding(0);
             flpActiveFilters.MaximumSize = new System.Drawing.Size(895, 45);
-            flpActiveFilters.MinimumSize = new System.Drawing.Size(895, 0);
+            flpActiveFilters.MinimumSize = System.Drawing.Size.Empty;
             flpActiveFilters.Name = "flpActiveFilters";
             flpActiveFilters.Size = new System.Drawing.Size(895, 0);
             flpActiveFilters.TabIndex = 6;
@@ -223,7 +254,7 @@ namespace StudentGradeTracker
             dgvStudents.RowHeadersVisible = false;
             dgvStudents.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dgvStudents.RowTemplate.Height = 28;
-            dgvStudents.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            dgvStudents.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             dgvStudents.Size = new System.Drawing.Size(895, 395);
             dgvStudents.TabIndex = 7;
             dgvStudents.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -274,7 +305,7 @@ namespace StudentGradeTracker
             pnlFilterStudents.Controls.Add(btnApply);
             pnlFilterStudents.CustomizableEdges = customizableEdges23;
             pnlFilterStudents.FillColor = System.Drawing.Color.White;
-            pnlFilterStudents.Location = new System.Drawing.Point(585, 72);
+            pnlFilterStudents.Location = new System.Drawing.Point(592, 72);
             pnlFilterStudents.Name = "pnlFilterStudents";
             pnlFilterStudents.ShadowDecoration.BorderRadius = 20;
             pnlFilterStudents.ShadowDecoration.Color = System.Drawing.Color.FromArgb(80, 0, 0, 0);
@@ -502,11 +533,13 @@ namespace StudentGradeTracker
             Controls.Add(dgvStudents);
             Controls.Add(btnMassDelete);
             Controls.Add(btnMassUpdate);
+            Controls.Add(btnCancelSelection);
+            Controls.Add(btnSelect);
             Controls.Add(btnFilter);
             Controls.Add(btnUpload);
             Controls.Add(btnAddStudent);
             Controls.Add(txtSearchStudents);
-            MinimumSize = new System.Drawing.Size(1000, 504);
+            MinimumSize = new System.Drawing.Size(640, 400);
             Name = "Students";
             Size = new System.Drawing.Size(1000, 504);
             ((System.ComponentModel.ISupportInitialize)dgvStudents).EndInit();
@@ -523,6 +556,8 @@ namespace StudentGradeTracker
         private Guna.UI2.WinForms.Guna2Button btnAddStudent;
         private Guna.UI2.WinForms.Guna2Button btnUpload;
         private Guna.UI2.WinForms.Guna2Button btnFilter;
+        private Guna.UI2.WinForms.Guna2Button btnSelect;
+        private Guna.UI2.WinForms.Guna2Button btnCancelSelection;
         private Guna.UI2.WinForms.Guna2Button btnMassUpdate;
         private Guna.UI2.WinForms.Guna2Button btnMassDelete;
         private System.Windows.Forms.FlowLayoutPanel flpActiveFilters;

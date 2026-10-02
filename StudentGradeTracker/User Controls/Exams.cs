@@ -18,6 +18,10 @@ namespace StudentGradeTracker.User_Controls
             InitializeComponent();
             SetupGridColumns();
             WireEvents();
+            ApplyVisualStyle();
+
+            this.Resize += (s, e) => AdjustGridLayout();
+            AdjustGridLayout();
 
             ExcelDatabaseManager.Instance.DataChanged += OnDataChanged;
             this.Load += (s, e) => LoadExamsData();
@@ -102,6 +106,30 @@ namespace StudentGradeTracker.User_Controls
             };
 
             dgvExams.SelectionChanged += (s, e) => dgvExams.ClearSelection();
+        }
+
+        private void ApplyVisualStyle()
+        {
+            BackColor = Color.FromArgb(241, 245, 249);
+            txtSearchExams.BorderRadius = 10;
+            txtSearchExams.BorderColor = Color.FromArgb(203, 213, 225);
+            txtSearchExams.FillColor = Color.White;
+            btnFilterCourses.BorderRadius = 10;
+            btnClose.BorderRadius = 8;
+            btnReset.BorderRadius = 10;
+            btnApply.BorderRadius = 10;
+
+            dgvExams.BorderStyle = BorderStyle.None;
+            dgvExams.GridColor = Color.FromArgb(226, 232, 240);
+            dgvExams.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 252);
+            dgvExams.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(15, 23, 42);
+            dgvExams.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(15, 23, 42);
+            dgvExams.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(15, 23, 42);
+
+            pnlFilterCourses.FillColor = Color.White;
+            pnlFilterCourses.BorderColor = Color.FromArgb(226, 232, 240);
+            pnlFilterCourses.BorderRadius = 16;
+            pnlFilterCourses.ShadowDecoration.Depth = 12;
         }
 
         private void WireEvents()
@@ -462,23 +490,33 @@ namespace StudentGradeTracker.User_Controls
 
         private void AdjustGridLayout()
         {
-            int top = 76;
+            const int left = 45;
+            const int right = 45;
+            int width = ClientSize.Width;
+            btnFilterCourses.Location = new Point(width - right - btnFilterCourses.Width, 36);
+            txtSearchExams.Location = new Point(left, 36);
+            txtSearchExams.Width = Math.Min(360, Math.Max(180, btnFilterCourses.Left - left - 12));
+
+            int top = 78;
+            flpActiveFiltersExams.Location = new Point(left, top);
+            flpActiveFiltersExams.Width = Math.Max(0, width - left - right);
+            flpActiveFiltersExams.MinimumSize = Size.Empty;
+            flpActiveFiltersExams.MaximumSize = new Size(Math.Max(0, width - left - right), 45);
 
             if (flpActiveFiltersExams.Controls.Count > 0)
             {
                 flpActiveFiltersExams.Visible = true;
-                flpActiveFiltersExams.Location = new Point(53, top);
                 top += flpActiveFiltersExams.PreferredSize.Height + 8;
             }
             else
             {
                 flpActiveFiltersExams.Visible = false;
-                top = 80;
+                top = 90;
             }
 
-            dgvExams.Location = new Point(53, top);
-            dgvExams.Height = this.ClientSize.Height - top - 25;
-            dgvExams.Width = this.ClientSize.Width - 106;
+            dgvExams.Location = new Point(left, top);
+            dgvExams.Height = Math.Max(100, ClientSize.Height - top - 25);
+            dgvExams.Width = Math.Max(100, width - left - right);
         }
 
         private void OnDataChanged()
