@@ -37,6 +37,7 @@ namespace StudentGradeTracker
             this.MinimizeBox = false;
             this.StartPosition = FormStartPosition.CenterParent;
             this.BackColor = Color.FromArgb(248, 249, 252);
+            this.AutoScaleMode = AutoScaleMode.Dpi;
             this.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
 
             var headerPanel = new Panel
@@ -163,7 +164,7 @@ namespace StudentGradeTracker
                 Location = new Point(leftCol + labelWidth, startY),
                 Size = new Size(160, 38),
                 BorderRadius = 4,
-                FillColor = Color.FromArgb(39, 39, 39), // #272727
+                FillColor = Color.FromArgb(30, 64, 175),
                 ForeColor = Color.White,
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold),
                 Cursor = Cursors.Hand
@@ -177,8 +178,10 @@ namespace StudentGradeTracker
                 Location = new Point(leftCol + labelWidth + 175, startY),
                 Size = new Size(160, 38),
                 BorderRadius = 4,
-                FillColor = Color.FromArgb(220, 220, 220),
-                ForeColor = Color.FromArgb(50, 50, 50),
+                FillColor = Color.Transparent,
+                BorderColor = Color.FromArgb(148, 163, 184),
+                BorderThickness = 1,
+                ForeColor = Color.FromArgb(51, 65, 85),
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold),
                 Cursor = Cursors.Hand
             };

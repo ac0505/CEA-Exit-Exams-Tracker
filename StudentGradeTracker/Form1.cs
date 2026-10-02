@@ -53,9 +53,9 @@ namespace StudentGradeTracker
             ResetTabButton(btnExams);
 
             activeButton.CustomBorderThickness = new Padding(0, 0, 0, 4);
-            activeButton.CustomBorderColor = Color.FromArgb(5, 11, 112);
-            activeButton.ForeColor = Color.FromArgb(5, 11, 112);
-            activeButton.FillColor = Color.FromArgb(245, 247, 255);
+            activeButton.CustomBorderColor = Color.FromArgb(37, 99, 235);
+            activeButton.ForeColor = Color.FromArgb(30, 64, 175);
+            activeButton.FillColor = Color.FromArgb(239, 246, 255);
 
             // Switch view
             control.Dock = DockStyle.Fill;
@@ -69,7 +69,7 @@ namespace StudentGradeTracker
             btn.CustomBorderThickness = new Padding(0, 0, 0, 0);
             btn.CustomBorderColor = Color.Transparent;
             btn.ForeColor = Color.FromArgb(71, 85, 105);
-            btn.FillColor = Color.White;
+            btn.FillColor = Color.FromArgb(248, 250, 252);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -100,6 +100,27 @@ namespace StudentGradeTracker
         private void btnMinimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnMaximize_Click(object sender, EventArgs e)
+        {
+            WindowState = WindowState == FormWindowState.Maximized
+                ? FormWindowState.Normal
+                : FormWindowState.Maximized;
+            UpdateMaximizeButtonIcon();
+        }
+
+        private void Form1_Resize(object? sender, EventArgs e)
+        {
+            UpdateMaximizeButtonIcon();
+        }
+
+        private void UpdateMaximizeButtonIcon()
+        {
+            if (btnMaximize != null)
+            {
+                btnMaximize.Text = WindowState == FormWindowState.Maximized ? "\uE923" : "\uE922";
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)

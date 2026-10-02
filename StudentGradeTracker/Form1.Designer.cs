@@ -39,8 +39,10 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             panel1 = new Panel();
             btnMinimize = new Guna.UI2.WinForms.Guna2Button();
+            btnMaximize = new Guna.UI2.WinForms.Guna2Button();
             btnClose = new Guna.UI2.WinForms.Guna2Button();
             label1 = new Label();
             pictureBox1 = new PictureBox();
@@ -56,8 +58,9 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(39, 39, 39);
+            panel1.BackColor = Color.FromArgb(15, 23, 42);
             panel1.Controls.Add(btnMinimize);
+            panel1.Controls.Add(btnMaximize);
             panel1.Controls.Add(btnClose);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(pictureBox1);
@@ -79,13 +82,29 @@
             btnMinimize.ForeColor = Color.White;
             btnMinimize.Image = (Image)resources.GetObject("btnMinimize.Image");
             btnMinimize.ImageSize = new Size(15, 15);
+            btnMinimize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnMinimize.Location = new Point(901, 18);
             btnMinimize.Name = "btnMinimize";
             btnMinimize.ShadowDecoration.CustomizableEdges = customizableEdges2;
             btnMinimize.Size = new Size(26, 20);
             btnMinimize.TabIndex = 4;
             btnMinimize.Click += btnMinimize_Click;
+            //
+            // btnMaximize
             // 
+            btnMaximize.CustomizableEdges = customizableEdges11;
+            btnMaximize.FillColor = Color.Transparent;
+            btnMaximize.Font = new Font("Segoe MDL2 Assets", 10F);
+            btnMaximize.ForeColor = Color.White;
+            btnMaximize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnMaximize.Location = new Point(923, 17);
+            btnMaximize.Name = "btnMaximize";
+            btnMaximize.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            btnMaximize.Size = new Size(20, 22);
+            btnMaximize.TabIndex = 5;
+            btnMaximize.Text = "\uE922";
+            btnMaximize.Click += btnMaximize_Click;
+            //
             // btnClose
             // 
             btnClose.CustomizableEdges = customizableEdges3;
@@ -97,17 +116,18 @@
             btnClose.Font = new Font("Segoe UI", 9F);
             btnClose.ForeColor = Color.White;
             btnClose.Image = (Image)resources.GetObject("btnClose.Image");
+            btnClose.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnClose.Location = new Point(948, 18);
             btnClose.Name = "btnClose";
             btnClose.ShadowDecoration.CustomizableEdges = customizableEdges4;
             btnClose.Size = new Size(20, 20);
-            btnClose.TabIndex = 5;
+            btnClose.TabIndex = 6;
             btnClose.Click += btnClose_Click;
             // 
             // label1
             // 
             label1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            label1.Font = new Font("Sans Serif Collection", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
             label1.Location = new Point(69, 7);
             label1.Name = "label1";
@@ -129,14 +149,14 @@
             // 
             // panel2
             // 
-            panel2.BackColor = Color.White;
+            panel2.BackColor = Color.FromArgb(248, 250, 252);
             panel2.Controls.Add(btnExams);
             panel2.Controls.Add(btnStudents);
             panel2.Controls.Add(btnDashboard);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 56);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1000, 40);
+            panel2.Size = new Size(1000, 48);
             panel2.TabIndex = 1;
             // 
             // btnExams
@@ -150,13 +170,13 @@
             btnExams.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnExams.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnExams.FillColor = Color.White;
-            btnExams.Font = new Font("Sans Serif Collection", 9.749998F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnExams.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnExams.ForeColor = Color.FromArgb(39, 39, 39);
             btnExams.HoverState.CustomBorderColor = Color.FromArgb(5, 11, 112);
             btnExams.Location = new Point(312, 0);
             btnExams.Name = "btnExams";
             btnExams.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            btnExams.Size = new Size(150, 40);
+            btnExams.Size = new Size(150, 48);
             btnExams.TabIndex = 2;
             btnExams.Text = "Exams";
             btnExams.Click += btnExams_Click;
@@ -172,13 +192,13 @@
             btnStudents.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnStudents.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnStudents.FillColor = Color.White;
-            btnStudents.Font = new Font("Sans Serif Collection", 9.749998F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnStudents.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnStudents.ForeColor = Color.FromArgb(39, 39, 39);
             btnStudents.HoverState.CustomBorderColor = Color.FromArgb(5, 11, 112);
             btnStudents.Location = new Point(156, 0);
             btnStudents.Name = "btnStudents";
             btnStudents.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            btnStudents.Size = new Size(150, 40);
+            btnStudents.Size = new Size(150, 48);
             btnStudents.TabIndex = 1;
             btnStudents.Text = "Students";
             btnStudents.Click += btnStudents_Click;
@@ -194,13 +214,13 @@
             btnDashboard.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnDashboard.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnDashboard.FillColor = Color.White;
-            btnDashboard.Font = new Font("Sans Serif Collection", 9.749998F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDashboard.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDashboard.ForeColor = Color.FromArgb(39, 39, 39);
             btnDashboard.HoverState.CustomBorderColor = Color.FromArgb(5, 11, 112);
             btnDashboard.Location = new Point(0, 0);
             btnDashboard.Name = "btnDashboard";
             btnDashboard.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            btnDashboard.Size = new Size(150, 40);
+            btnDashboard.Size = new Size(150, 48);
             btnDashboard.TabIndex = 0;
             btnDashboard.Text = "Dashboard";
             btnDashboard.Click += btnDashboard_Click;
@@ -208,7 +228,7 @@
             // pnlContainer
             // 
             pnlContainer.Dock = DockStyle.Fill;
-            pnlContainer.Location = new Point(0, 96);
+            pnlContainer.Location = new Point(0, 104);
             pnlContainer.Name = "pnlContainer";
             pnlContainer.Size = new Size(1000, 520);
             pnlContainer.TabIndex = 2;
@@ -217,16 +237,18 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1000, 616);
+            BackColor = Color.FromArgb(248, 250, 252);
+            ClientSize = new Size(1000, 624);
             Controls.Add(pnlContainer);
             Controls.Add(panel2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
-            MinimumSize = new Size(1000, 616);
+            MinimumSize = new Size(1000, 624);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             Load += Form1_Load;
+            Resize += Form1_Resize;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel2.ResumeLayout(false);
@@ -244,6 +266,7 @@
         private Guna.UI2.WinForms.Guna2Button btnExams;
         private Guna.UI2.WinForms.Guna2Button btnStudents;
         private Guna.UI2.WinForms.Guna2Button btnMinimize;
+        private Guna.UI2.WinForms.Guna2Button btnMaximize;
         private Guna.UI2.WinForms.Guna2Button btnClose;
     }
 }

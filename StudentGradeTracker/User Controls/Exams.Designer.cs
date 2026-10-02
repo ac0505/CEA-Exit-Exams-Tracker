@@ -17,6 +17,7 @@ namespace StudentGradeTracker.User_Controls
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Exams));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -85,7 +86,7 @@ namespace StudentGradeTracker.User_Controls
             btnFilterCourses.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             btnFilterCourses.BorderRadius = 4;
             btnFilterCourses.CustomizableEdges = customizableEdges3;
-            btnFilterCourses.FillColor = System.Drawing.Color.FromArgb(39, 39, 39); // #272727
+            btnFilterCourses.FillColor = System.Drawing.Color.FromArgb(30, 64, 175);
             btnFilterCourses.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             btnFilterCourses.ForeColor = System.Drawing.Color.White;
             btnFilterCourses.Location = new System.Drawing.Point(828, 30);
@@ -93,7 +94,7 @@ namespace StudentGradeTracker.User_Controls
             btnFilterCourses.ShadowDecoration.CustomizableEdges = customizableEdges4;
             btnFilterCourses.Size = new System.Drawing.Size(120, 36);
             btnFilterCourses.TabIndex = 1;
-            btnFilterCourses.Text = "Filter Courses ▾";
+            btnFilterCourses.Text = "Filter Courses";
 
             // 
             // flpActiveFiltersExams
@@ -227,12 +228,14 @@ namespace StudentGradeTracker.User_Controls
             btnClose.FillColor = System.Drawing.Color.Transparent;
             btnClose.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             btnClose.ForeColor = System.Drawing.Color.FromArgb(97, 97, 97);
+            btnClose.Image = (System.Drawing.Image)resources.GetObject("btnClose.Image");
+            btnClose.ImageSize = new System.Drawing.Size(12, 12);
             btnClose.Location = new System.Drawing.Point(322, 10);
             btnClose.Name = "btnClose";
             btnClose.ShadowDecoration.CustomizableEdges = customizableEdges6;
             btnClose.Size = new System.Drawing.Size(26, 26);
             btnClose.TabIndex = 1;
-            btnClose.Text = "✕";
+            btnClose.Text = "";
 
             // 
             // lblSY
@@ -378,7 +381,7 @@ namespace StudentGradeTracker.User_Controls
             // btnApply
             // 
             btnApply.BorderRadius = 4;
-            btnApply.FillColor = System.Drawing.Color.FromArgb(39, 39, 39); // #272727
+            btnApply.FillColor = System.Drawing.Color.FromArgb(30, 64, 175);
             btnApply.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             btnApply.ForeColor = System.Drawing.Color.White;
             btnApply.Location = new System.Drawing.Point(257, 255);
@@ -392,7 +395,7 @@ namespace StudentGradeTracker.User_Controls
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            BackColor = System.Drawing.Color.White;
+            BackColor = System.Drawing.Color.FromArgb(248, 250, 252);
             Controls.Add(pnlFilterCourses);
             Controls.Add(lblNoRecords);
             Controls.Add(flpActiveFiltersExams);

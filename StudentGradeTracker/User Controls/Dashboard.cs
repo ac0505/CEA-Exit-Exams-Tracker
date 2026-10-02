@@ -14,11 +14,28 @@ namespace StudentGradeTracker.User_Controls
         {
             InitializeComponent();
             SetupGridColumns();
+            LayoutSummaryCards();
 
             txtSearch.TextChanged += TxtSearch_TextChanged;
             ExcelDatabaseManager.Instance.DataChanged += OnDataChanged;
 
             this.Load += (s, e) => LoadDashboardData();
+            this.Resize += (s, e) => LayoutSummaryCards();
+        }
+
+        private void LayoutSummaryCards()
+        {
+            if (pnlCardsContainer == null) return;
+
+            int gap = 16;
+            int cardWidth = Math.Max(160, (pnlCardsContainer.ClientSize.Width - (gap * 3)) / 4);
+            var cards = new[] { pnlCardTotal, pnlCardPassed, pnlCardCompletion, pnlCardRate };
+
+            for (int index = 0; index < cards.Length; index++)
+            {
+                cards[index].Location = new Point(index * (cardWidth + gap), 0);
+                cards[index].Size = new Size(cardWidth, pnlCardsContainer.ClientSize.Height - 5);
+            }
         }
 
         private void SetupGridColumns()

@@ -17,6 +17,7 @@ namespace StudentGradeTracker
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Students));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -96,7 +97,7 @@ namespace StudentGradeTracker
             // 
             btnMassUpdate.BorderRadius = 4;
             btnMassUpdate.CustomizableEdges = customizableEdges3;
-            btnMassUpdate.FillColor = System.Drawing.Color.FromArgb(39, 39, 39); // #272727
+            btnMassUpdate.FillColor = System.Drawing.Color.FromArgb(30, 64, 175);
             btnMassUpdate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             btnMassUpdate.ForeColor = System.Drawing.Color.White;
             btnMassUpdate.Location = new System.Drawing.Point(385, 30);
@@ -112,7 +113,7 @@ namespace StudentGradeTracker
             // 
             btnMassDelete.BorderRadius = 4;
             btnMassDelete.CustomizableEdges = customizableEdges5;
-            btnMassDelete.FillColor = System.Drawing.Color.FromArgb(39, 39, 39); // #272727
+            btnMassDelete.FillColor = System.Drawing.Color.FromArgb(185, 28, 28);
             btnMassDelete.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             btnMassDelete.ForeColor = System.Drawing.Color.White;
             btnMassDelete.Location = new System.Drawing.Point(515, 30);
@@ -129,7 +130,7 @@ namespace StudentGradeTracker
             btnAddStudent.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             btnAddStudent.BorderRadius = 4;
             btnAddStudent.CustomizableEdges = customizableEdges7;
-            btnAddStudent.FillColor = System.Drawing.Color.FromArgb(39, 39, 39); // #272727
+            btnAddStudent.FillColor = System.Drawing.Color.FromArgb(30, 64, 175);
             btnAddStudent.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             btnAddStudent.ForeColor = System.Drawing.Color.White;
             btnAddStudent.Location = new System.Drawing.Point(620, 30);
@@ -145,7 +146,7 @@ namespace StudentGradeTracker
             btnUpload.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             btnUpload.BorderRadius = 4;
             btnUpload.CustomizableEdges = customizableEdges9;
-            btnUpload.FillColor = System.Drawing.Color.FromArgb(39, 39, 39); // #272727
+            btnUpload.FillColor = System.Drawing.Color.FromArgb(30, 64, 175);
             btnUpload.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             btnUpload.ForeColor = System.Drawing.Color.White;
             btnUpload.Location = new System.Drawing.Point(740, 30);
@@ -161,7 +162,7 @@ namespace StudentGradeTracker
             btnFilter.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             btnFilter.BorderRadius = 4;
             btnFilter.CustomizableEdges = customizableEdges11;
-            btnFilter.FillColor = System.Drawing.Color.FromArgb(39, 39, 39); // #272727
+            btnFilter.FillColor = System.Drawing.Color.FromArgb(30, 64, 175);
             btnFilter.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             btnFilter.ForeColor = System.Drawing.Color.White;
             btnFilter.Location = new System.Drawing.Point(860, 30);
@@ -169,7 +170,7 @@ namespace StudentGradeTracker
             btnFilter.ShadowDecoration.CustomizableEdges = customizableEdges12;
             btnFilter.Size = new System.Drawing.Size(88, 36);
             btnFilter.TabIndex = 5;
-            btnFilter.Text = "Filter ▾";
+            btnFilter.Text = "Filter";
 
             // 
             // flpActiveFilters
@@ -304,12 +305,14 @@ namespace StudentGradeTracker
             btnClose.FillColor = System.Drawing.Color.Transparent;
             btnClose.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             btnClose.ForeColor = System.Drawing.Color.FromArgb(97, 97, 97);
+            btnClose.Image = (System.Drawing.Image)resources.GetObject("btnClose.Image");
+            btnClose.ImageSize = new System.Drawing.Size(12, 12);
             btnClose.Location = new System.Drawing.Point(322, 10);
             btnClose.Name = "btnClose";
             btnClose.ShadowDecoration.CustomizableEdges = customizableEdges14;
             btnClose.Size = new System.Drawing.Size(26, 26);
             btnClose.TabIndex = 1;
-            btnClose.Text = "✕";
+            btnClose.Text = "";
 
             // 
             // label2
@@ -478,7 +481,7 @@ namespace StudentGradeTracker
             // btnApply
             // 
             btnApply.BorderRadius = 4;
-            btnApply.FillColor = System.Drawing.Color.FromArgb(39, 39, 39); // #272727
+            btnApply.FillColor = System.Drawing.Color.FromArgb(30, 64, 175);
             btnApply.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             btnApply.ForeColor = System.Drawing.Color.White;
             btnApply.Location = new System.Drawing.Point(257, 255);
@@ -492,7 +495,7 @@ namespace StudentGradeTracker
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            BackColor = System.Drawing.Color.White;
+            BackColor = System.Drawing.Color.FromArgb(248, 250, 252);
             Controls.Add(pnlFilterStudents);
             Controls.Add(lblNoRecords);
             Controls.Add(flpActiveFilters);

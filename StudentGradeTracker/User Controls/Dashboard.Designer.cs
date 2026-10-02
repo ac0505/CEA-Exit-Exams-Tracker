@@ -77,7 +77,7 @@ namespace StudentGradeTracker.User_Controls
             pnlCardTotal.BorderThickness = 1;
             pnlCardTotal.Controls.Add(lblCardTotalValue);
             pnlCardTotal.Controls.Add(lblCardTotalTitle);
-            pnlCardTotal.FillColor = System.Drawing.Color.FromArgb(240, 244, 255);
+            pnlCardTotal.FillColor = System.Drawing.Color.FromArgb(239, 246, 255);
             pnlCardTotal.Location = new System.Drawing.Point(0, 0);
             pnlCardTotal.Name = "pnlCardTotal";
             pnlCardTotal.ShadowDecoration.CustomizableEdges = customizableEdges1;
@@ -118,7 +118,7 @@ namespace StudentGradeTracker.User_Controls
             pnlCardPassed.BorderThickness = 1;
             pnlCardPassed.Controls.Add(lblCardPassedValue);
             pnlCardPassed.Controls.Add(lblCardPassedTitle);
-            pnlCardPassed.FillColor = System.Drawing.Color.FromArgb(236, 253, 245);
+            pnlCardPassed.FillColor = System.Drawing.Color.FromArgb(240, 253, 244);
             pnlCardPassed.Location = new System.Drawing.Point(245, 0);
             pnlCardPassed.Name = "pnlCardPassed";
             pnlCardPassed.ShadowDecoration.CustomizableEdges = customizableEdges2;
@@ -159,7 +159,7 @@ namespace StudentGradeTracker.User_Controls
             pnlCardCompletion.BorderThickness = 1;
             pnlCardCompletion.Controls.Add(lblCardCompletionValue);
             pnlCardCompletion.Controls.Add(lblCardCompletionTitle);
-            pnlCardCompletion.FillColor = System.Drawing.Color.FromArgb(254, 252, 232);
+            pnlCardCompletion.FillColor = System.Drawing.Color.FromArgb(255, 251, 235);
             pnlCardCompletion.Location = new System.Drawing.Point(490, 0);
             pnlCardCompletion.Name = "pnlCardCompletion";
             pnlCardCompletion.ShadowDecoration.CustomizableEdges = customizableEdges3;
@@ -200,7 +200,7 @@ namespace StudentGradeTracker.User_Controls
             pnlCardRate.BorderThickness = 1;
             pnlCardRate.Controls.Add(lblCardRateValue);
             pnlCardRate.Controls.Add(lblCardRateTitle);
-            pnlCardRate.FillColor = System.Drawing.Color.White;
+            pnlCardRate.FillColor = System.Drawing.Color.FromArgb(248, 250, 252);
             pnlCardRate.Location = new System.Drawing.Point(735, 0);
             pnlCardRate.Name = "pnlCardRate";
             pnlCardRate.ShadowDecoration.CustomizableEdges = customizableEdges4;
@@ -275,11 +275,11 @@ namespace StudentGradeTracker.User_Controls
             dgvDashboard.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             dgvDashboard.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(48, 48, 48); // #303030
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(15, 23, 42);
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(170, 170, 170); // #AAAAAA
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(30, 64, 175);
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             dgvDashboard.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvDashboard.ColumnHeadersHeight = 35;
@@ -288,8 +288,8 @@ namespace StudentGradeTracker.User_Controls
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(51, 51, 51);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(170, 170, 170); // #AAAAAA
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(219, 234, 254);
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(15, 23, 42);
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             dgvDashboard.DefaultCellStyle = dataGridViewCellStyle3;
             dgvDashboard.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -303,12 +303,12 @@ namespace StudentGradeTracker.User_Controls
             dgvDashboard.Size = new System.Drawing.Size(960, 315);
             dgvDashboard.TabIndex = 3;
             dgvDashboard.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(248, 250, 252);
-            dgvDashboard.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            dgvDashboard.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(15, 23, 42);
             dgvDashboard.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             dgvDashboard.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             dgvDashboard.ThemeStyle.HeaderStyle.Height = 35;
             dgvDashboard.ThemeStyle.ReadOnly = true;
-            dgvDashboard.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(170, 170, 170);
+            dgvDashboard.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(219, 234, 254);
 
             // 
             // Dashboard
