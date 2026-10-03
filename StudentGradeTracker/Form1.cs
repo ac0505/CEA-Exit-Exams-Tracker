@@ -49,9 +49,25 @@ namespace StudentGradeTracker
             _maximizeIcon = CreateWindowIcon(false);
             _restoreIcon = CreateWindowIcon(true);
             btnMaximize.Text = string.Empty;
-            btnMaximize.ImageSize = new Size(16, 16);
+            btnMaximize.ImageSize = new Size(14, 14);
             btnMaximize.ImageAlign = HorizontalAlignment.Center;
             UpdateMaximizeButtonIcon();
+
+            btnClose.Text = string.Empty;
+            btnClose.Image = IconHelper.CreateCloseIcon(12, Color.White);
+            btnClose.ImageSize = new Size(12, 12);
+            btnClose.ImageAlign = HorizontalAlignment.Center;
+            btnClose.HoverState.FillColor = Color.FromArgb(220, 38, 38);
+
+            // Configure navigation buttons with larger vector icons and smooth animations
+            foreach (var btn in new[] { btnDashboard, btnStudents, btnExams })
+            {
+                btn.Animated = true;
+                btn.ImageSize = new Size(20, 20);
+                btn.ImageAlign = HorizontalAlignment.Center;
+                btn.ImageOffset = new Point(-6, 0);
+                btn.TextOffset = new Point(6, 0);
+            }
         }
 
         private static Bitmap CreateWindowIcon(bool restore)
@@ -149,38 +165,53 @@ namespace StudentGradeTracker
             base.WndProc(ref m);
         }
 
+        private UserControl? _activeView;
+
         private void SetActiveTab(Guna2Button activeButton, UserControl control)
         {
-            // Update button styles
-            ResetTabButton(btnDashboard);
-            ResetTabButton(btnStudents);
-            ResetTabButton(btnExams);
+            if (_activeView == control) return;
 
-            activeButton.CustomBorderThickness = new Padding(0, 0, 0, 4);
+            // Update button styles with clean, larger vector icons
+            ResetTabButton(btnDashboard, IconHelper.CreateDashboardIcon(20, Color.FromArgb(71, 85, 105)));
+            ResetTabButton(btnStudents, IconHelper.CreateStudentsIcon(20, Color.FromArgb(71, 85, 105)));
+            ResetTabButton(btnExams, IconHelper.CreateExamsIcon(20, Color.FromArgb(71, 85, 105)));
+
+            activeButton.CustomBorderThickness = new Padding(0, 0, 0, 3);
             activeButton.CustomBorderColor = Color.FromArgb(37, 99, 235);
             activeButton.ForeColor = Color.FromArgb(30, 64, 175);
             activeButton.FillColor = Color.FromArgb(239, 246, 255);
 
-            // Switch view
+            if (activeButton == btnDashboard)
+                activeButton.Image = IconHelper.CreateDashboardIcon(20, Color.FromArgb(30, 64, 175));
+            else if (activeButton == btnStudents)
+                activeButton.Image = IconHelper.CreateStudentsIcon(20, Color.FromArgb(30, 64, 175));
+            else if (activeButton == btnExams)
+                activeButton.Image = IconHelper.CreateExamsIcon(20, Color.FromArgb(30, 64, 175));
+
+            // Smooth view switch
+            pnlContainer.SuspendLayout();
             control.Dock = DockStyle.Fill;
             pnlContainer.Controls.Clear();
             pnlContainer.Controls.Add(control);
             control.BringToFront();
+            pnlContainer.ResumeLayout(true);
+            _activeView = control;
         }
 
-        private void ResetTabButton(Guna2Button btn)
+        private void ResetTabButton(Guna2Button btn, Bitmap icon)
         {
-            btn.CustomBorderThickness = new Padding(0, 0, 0, 0);
+            btn.CustomBorderThickness = Padding.Empty;
             btn.CustomBorderColor = Color.Transparent;
             btn.ForeColor = Color.FromArgb(71, 85, 105);
             btn.FillColor = Color.FromArgb(248, 250, 252);
+            btn.Image = icon;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             Rectangle workingArea = Screen.FromControl(this).WorkingArea;
-            int width = Math.Min(1200, workingArea.Width - 48);
-            int height = Math.Min(700, workingArea.Height - 48);
+            int width = Math.Min(1260, workingArea.Width - 32);
+            int height = Math.Min(750, workingArea.Height - 32);
             Size = new Size(Math.Max(MinimumSize.Width, width), Math.Max(MinimumSize.Height, height));
             Location = new Point(
                 workingArea.Left + (workingArea.Width - Width) / 2,

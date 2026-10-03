@@ -111,13 +111,53 @@ namespace StudentGradeTracker.User_Controls
         private void ApplyVisualStyle()
         {
             BackColor = Color.FromArgb(241, 245, 249);
-            txtSearchExams.BorderRadius = 10;
+
+            txtSearchExams.BorderRadius = 8;
             txtSearchExams.BorderColor = Color.FromArgb(203, 213, 225);
             txtSearchExams.FillColor = Color.White;
-            btnFilterCourses.BorderRadius = 10;
-            btnClose.BorderRadius = 8;
-            btnReset.BorderRadius = 10;
-            btnApply.BorderRadius = 10;
+            txtSearchExams.IconLeft = IconHelper.CreateSearchIcon(14, Color.FromArgb(148, 163, 184));
+            txtSearchExams.IconLeftSize = new Size(14, 14);
+            txtSearchExams.IconLeftOffset = new Point(8, 0);
+            txtSearchExams.Animated = true;
+
+            btnFilterCourses.BorderRadius = 8;
+            btnFilterCourses.Image = IconHelper.CreateFilterIcon(13, Color.White);
+            btnFilterCourses.ImageSize = new Size(13, 13);
+            btnFilterCourses.TextAlign = HorizontalAlignment.Left;
+            btnFilterCourses.ImageAlign = HorizontalAlignment.Left;
+            btnFilterCourses.ImageOffset = new Point(10, 0);
+            btnFilterCourses.TextOffset = new Point(8, 0);
+            btnFilterCourses.Animated = true;
+
+            pnlFilterCourses.FillColor = Color.White;
+            pnlFilterCourses.BorderColor = Color.FromArgb(226, 232, 240);
+            pnlFilterCourses.BorderRadius = 14;
+            pnlFilterCourses.ShadowDecoration.Enabled = true;
+            pnlFilterCourses.ShadowDecoration.Depth = 8;
+            pnlFilterCourses.ShadowDecoration.Color = Color.FromArgb(20, 0, 0, 0);
+
+            btnClose.Text = string.Empty;
+            btnClose.Image = IconHelper.CreateCloseIcon(12, Color.FromArgb(100, 116, 139));
+            btnClose.ImageSize = new Size(12, 12);
+            btnClose.Animated = true;
+
+            btnReset.Image = IconHelper.CreateResetIcon(13, Color.FromArgb(51, 65, 85));
+            btnReset.ImageSize = new Size(13, 13);
+            btnReset.TextAlign = HorizontalAlignment.Left;
+            btnReset.ImageAlign = HorizontalAlignment.Left;
+            btnReset.ImageOffset = new Point(10, 0);
+            btnReset.TextOffset = new Point(8, 0);
+            btnReset.Animated = true;
+            btnReset.BorderRadius = 8;
+
+            btnApply.Image = IconHelper.CreateCheckIcon(13, Color.White);
+            btnApply.ImageSize = new Size(13, 13);
+            btnApply.TextAlign = HorizontalAlignment.Left;
+            btnApply.ImageAlign = HorizontalAlignment.Left;
+            btnApply.ImageOffset = new Point(10, 0);
+            btnApply.TextOffset = new Point(8, 0);
+            btnApply.Animated = true;
+            btnApply.BorderRadius = 8;
 
             dgvExams.BorderStyle = BorderStyle.None;
             dgvExams.GridColor = Color.FromArgb(226, 232, 240);
@@ -125,11 +165,6 @@ namespace StudentGradeTracker.User_Controls
             dgvExams.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(15, 23, 42);
             dgvExams.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(15, 23, 42);
             dgvExams.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(15, 23, 42);
-
-            pnlFilterCourses.FillColor = Color.White;
-            pnlFilterCourses.BorderColor = Color.FromArgb(226, 232, 240);
-            pnlFilterCourses.BorderRadius = 16;
-            pnlFilterCourses.ShadowDecoration.Depth = 12;
         }
 
         private void WireEvents()
@@ -469,21 +504,28 @@ namespace StudentGradeTracker.User_Controls
         {
             var btn = new Guna2Button
             {
-                Text = $"✕  {text}",
+                Text = text,
                 Height = 28,
                 AutoSize = true,
                 BorderRadius = 14,
                 BorderThickness = 1,
-                BorderColor = Color.FromArgb(208, 208, 208),
-                FillColor = Color.FromArgb(245, 245, 245),
-                ForeColor = Color.FromArgb(39, 39, 39),
-                Font = new Font("Segoe UI", 8.5F, FontStyle.Bold),
+                BorderColor = Color.FromArgb(226, 232, 240),
+                FillColor = Color.FromArgb(241, 245, 249),
+                ForeColor = Color.FromArgb(51, 65, 85),
+                Font = new Font("Segoe UI", 8.25F, FontStyle.Bold),
                 Margin = new Padding(0, 0, 8, 4),
-                Cursor = Cursors.Hand
+                Cursor = Cursors.Hand,
+                Animated = true,
+                Image = IconHelper.CreateCloseIcon(10, Color.FromArgb(100, 116, 139)),
+                ImageSize = new Size(10, 10),
+                ImageAlign = HorizontalAlignment.Left,
+                ImageOffset = new Point(2, 0),
+                TextOffset = new Point(2, 0)
             };
             btn.HoverState.FillColor = Color.FromArgb(254, 226, 226);
             btn.HoverState.ForeColor = Color.FromArgb(185, 28, 28);
             btn.HoverState.BorderColor = Color.FromArgb(248, 113, 113);
+            btn.HoverState.Image = IconHelper.CreateCloseIcon(10, Color.FromArgb(185, 28, 28));
             btn.Click += (s, e) => onRemove();
             flpActiveFiltersExams.Controls.Add(btn);
         }
@@ -493,6 +535,7 @@ namespace StudentGradeTracker.User_Controls
             const int left = 45;
             const int right = 45;
             int width = ClientSize.Width;
+            btnFilterCourses.Size = new Size(125, 36);
             btnFilterCourses.Location = new Point(width - right - btnFilterCourses.Width, 36);
             txtSearchExams.Location = new Point(left, 36);
             txtSearchExams.Width = Math.Min(360, Math.Max(180, btnFilterCourses.Left - left - 12));

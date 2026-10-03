@@ -105,16 +105,88 @@ namespace StudentGradeTracker
         private void ApplyVisualStyle()
         {
             BackColor = Color.FromArgb(241, 245, 249);
-            txtSearchStudents.BorderRadius = 10;
+
+            txtSearchStudents.BorderRadius = 8;
             txtSearchStudents.BorderColor = Color.FromArgb(203, 213, 225);
             txtSearchStudents.FillColor = Color.White;
+            txtSearchStudents.IconLeft = IconHelper.CreateSearchIcon(14, Color.FromArgb(148, 163, 184));
+            txtSearchStudents.IconLeftSize = new Size(14, 14);
+            txtSearchStudents.IconLeftOffset = new Point(8, 0);
+            txtSearchStudents.Animated = true;
 
-            foreach (var button in new[] { btnMassUpdate, btnMassDelete, btnAddStudent, btnUpload, btnFilter, btnSelect, btnCancelSelection })
+            // Action buttons with crisp vector icons, left alignment and clean spacing
+            foreach (var btn in new[] { btnAddStudent, btnUpload, btnFilter, btnSelect })
             {
-                button.BorderRadius = 10;
-                button.TextAlign = HorizontalAlignment.Center;
-                button.TextOffset = Point.Empty;
+                btn.Animated = true;
+                btn.BorderRadius = 8;
+                btn.TextAlign = HorizontalAlignment.Left;
+                btn.ImageAlign = HorizontalAlignment.Left;
+                btn.ImageOffset = new Point(10, 0);
+                btn.TextOffset = new Point(8, 0);
             }
+
+            btnAddStudent.Image = IconHelper.CreatePlusIcon(13, Color.White);
+            btnAddStudent.ImageSize = new Size(13, 13);
+
+            btnUpload.Image = IconHelper.CreateUploadIcon(13, Color.White);
+            btnUpload.ImageSize = new Size(13, 13);
+
+            btnFilter.Image = IconHelper.CreateFilterIcon(13, Color.White);
+            btnFilter.ImageSize = new Size(13, 13);
+
+            btnSelect.Image = IconHelper.CreateCheckIcon(13, Color.White);
+            btnSelect.ImageSize = new Size(13, 13);
+
+            // Action labels aligned with identical TextAlign and TextOffset
+            foreach (var button in new[] { btnMassUpdate, btnMassDelete, btnCancelSelection })
+            {
+                button.BorderRadius = 8;
+                button.Animated = true;
+                button.TextAlign = HorizontalAlignment.Left;
+                button.ImageAlign = HorizontalAlignment.Left;
+                button.ImageOffset = new Point(10, 0);
+                button.TextOffset = new Point(8, 0);
+            }
+
+            btnCancelSelection.Image = IconHelper.CreateCloseIcon(13, Color.FromArgb(51, 65, 85));
+            btnCancelSelection.ImageSize = new Size(13, 13);
+
+            btnMassUpdate.Image = IconHelper.CreateEditIcon(13, Color.White);
+            btnMassUpdate.ImageSize = new Size(13, 13);
+
+            btnMassDelete.Image = IconHelper.CreateDeleteIcon(13, Color.White);
+            btnMassDelete.ImageSize = new Size(13, 13);
+
+            // Filter popup panel styling
+            pnlFilterStudents.FillColor = Color.White;
+            pnlFilterStudents.BorderColor = Color.FromArgb(226, 232, 240);
+            pnlFilterStudents.BorderRadius = 14;
+            pnlFilterStudents.ShadowDecoration.Enabled = true;
+            pnlFilterStudents.ShadowDecoration.Depth = 8;
+            pnlFilterStudents.ShadowDecoration.Color = Color.FromArgb(20, 0, 0, 0);
+
+            btnClose.Text = string.Empty;
+            btnClose.Image = IconHelper.CreateCloseIcon(12, Color.FromArgb(100, 116, 139));
+            btnClose.ImageSize = new Size(12, 12);
+            btnClose.Animated = true;
+
+            btnReset.Image = IconHelper.CreateResetIcon(13, Color.FromArgb(51, 65, 85));
+            btnReset.ImageSize = new Size(13, 13);
+            btnReset.TextAlign = HorizontalAlignment.Left;
+            btnReset.ImageAlign = HorizontalAlignment.Left;
+            btnReset.ImageOffset = new Point(10, 0);
+            btnReset.TextOffset = new Point(8, 0);
+            btnReset.Animated = true;
+            btnReset.BorderRadius = 8;
+
+            btnApply.Image = IconHelper.CreateCheckIcon(13, Color.White);
+            btnApply.ImageSize = new Size(13, 13);
+            btnApply.TextAlign = HorizontalAlignment.Left;
+            btnApply.ImageAlign = HorizontalAlignment.Left;
+            btnApply.ImageOffset = new Point(10, 0);
+            btnApply.TextOffset = new Point(8, 0);
+            btnApply.Animated = true;
+            btnApply.BorderRadius = 8;
 
             dgvStudents.BorderStyle = BorderStyle.None;
             dgvStudents.GridColor = Color.FromArgb(226, 232, 240);
@@ -124,11 +196,6 @@ namespace StudentGradeTracker
             dgvStudents.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(15, 23, 42);
             _headerCheckBox!.BackColor = Color.FromArgb(15, 23, 42);
             _headerCheckBox.ForeColor = Color.White;
-
-            pnlFilterStudents.FillColor = Color.White;
-            pnlFilterStudents.BorderColor = Color.FromArgb(226, 232, 240);
-            pnlFilterStudents.BorderRadius = 16;
-            pnlFilterStudents.ShadowDecoration.Depth = 12;
         }
 
         private void AddTextCol(string propName, string headerText, int minWidth, DataGridViewAutoSizeColumnMode mode)
@@ -563,21 +630,28 @@ namespace StudentGradeTracker
         {
             var btn = new Guna2Button
             {
-                Text = $"✕  {text}",
+                Text = text,
                 Height = 28,
                 AutoSize = true,
                 BorderRadius = 14,
                 BorderThickness = 1,
-                BorderColor = Color.FromArgb(208, 208, 208),
-                FillColor = Color.FromArgb(245, 245, 245),
-                ForeColor = Color.FromArgb(39, 39, 39),
-                Font = new Font("Segoe UI", 8.5F, FontStyle.Bold),
+                BorderColor = Color.FromArgb(226, 232, 240),
+                FillColor = Color.FromArgb(241, 245, 249),
+                ForeColor = Color.FromArgb(51, 65, 85),
+                Font = new Font("Segoe UI", 8.25F, FontStyle.Bold),
                 Margin = new Padding(0, 0, 8, 4),
-                Cursor = Cursors.Hand
+                Cursor = Cursors.Hand,
+                Animated = true,
+                Image = IconHelper.CreateCloseIcon(10, Color.FromArgb(100, 116, 139)),
+                ImageSize = new Size(10, 10),
+                ImageAlign = HorizontalAlignment.Left,
+                ImageOffset = new Point(2, 0),
+                TextOffset = new Point(2, 0)
             };
             btn.HoverState.FillColor = Color.FromArgb(254, 226, 226);
             btn.HoverState.ForeColor = Color.FromArgb(185, 28, 28);
             btn.HoverState.BorderColor = Color.FromArgb(248, 113, 113);
+            btn.HoverState.Image = IconHelper.CreateCloseIcon(10, Color.FromArgb(185, 28, 28));
             btn.Click += (s, e) => onRemove();
             flpActiveFilters.Controls.Add(btn);
         }
@@ -597,9 +671,9 @@ namespace StudentGradeTracker
                 btnUpload.Visible = false;
                 btnFilter.Visible = false;
                 btnSelect.Visible = false;
-                btnCancelSelection.Bounds = new Rectangle(width - right - 82, buttonY, 82, 36);
-                btnMassDelete.Bounds = new Rectangle(btnCancelSelection.Left - gap - 85, buttonY, 85, 36);
-                btnMassUpdate.Bounds = new Rectangle(btnMassDelete.Left - gap - 120, buttonY, 120, 36);
+                btnCancelSelection.Bounds = new Rectangle(width - right - 96, buttonY, 96, 36);
+                btnMassDelete.Bounds = new Rectangle(btnCancelSelection.Left - gap - 115, buttonY, 115, 36);
+                btnMassUpdate.Bounds = new Rectangle(btnMassDelete.Left - gap - 160, buttonY, 160, 36);
                 searchRight = btnMassUpdate.Left;
             }
             else
@@ -609,10 +683,10 @@ namespace StudentGradeTracker
                 btnFilter.Visible = true;
                 btnSelect.Visible = true;
                 btnCancelSelection.Visible = false;
-                btnSelect.Bounds = new Rectangle(width - right - 82, buttonY, 82, 36);
-                btnFilter.Bounds = new Rectangle(btnSelect.Left - gap - 88, buttonY, 88, 36);
-                btnUpload.Bounds = new Rectangle(btnFilter.Left - gap - 110, buttonY, 110, 36);
-                btnAddStudent.Bounds = new Rectangle(btnUpload.Left - gap - 110, buttonY, 110, 36);
+                btnSelect.Bounds = new Rectangle(width - right - 96, buttonY, 96, 36);
+                btnFilter.Bounds = new Rectangle(btnSelect.Left - gap - 96, buttonY, 96, 36);
+                btnUpload.Bounds = new Rectangle(btnFilter.Left - gap - 132, buttonY, 132, 36);
+                btnAddStudent.Bounds = new Rectangle(btnUpload.Left - gap - 132, buttonY, 132, 36);
                 searchRight = btnAddStudent.Left;
             }
 

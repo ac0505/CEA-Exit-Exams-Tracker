@@ -1,4 +1,4 @@
-﻿namespace StudentGradeTracker
+namespace StudentGradeTracker
 {
     partial class Form1
     {
@@ -239,12 +239,12 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(248, 250, 252);
-            ClientSize = new Size(1200, 700);
+            ClientSize = new Size(1260, 750);
             Controls.Add(pnlContainer);
             Controls.Add(panel2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
-            MinimumSize = new Size(680, 520);
+            MinimumSize = new Size(980, 620);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";

@@ -158,24 +158,36 @@ namespace StudentGradeTracker
             {
                 Text = "Save Student",
                 Size = new Size(145, 38),
-                BorderRadius = 9,
+                BorderRadius = 8,
+                Animated = true,
                 FillColor = Color.FromArgb(30, 64, 175),
                 ForeColor = Color.White,
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold),
-                Cursor = Cursors.Hand
+                Cursor = Cursors.Hand,
+                Image = IconHelper.CreateCheckIcon(13, Color.White),
+                ImageSize = new Size(13, 13),
+                ImageAlign = HorizontalAlignment.Left,
+                ImageOffset = new Point(8, 0),
+                TextOffset = new Point(4, 0)
             };
             btnSave.Click += BtnSave_Click;
             btnCancel = new Guna2Button
             {
                 Text = "Cancel",
                 Size = new Size(120, 38),
-                BorderRadius = 9,
+                BorderRadius = 8,
+                Animated = true,
                 FillColor = Color.White,
                 BorderColor = Color.FromArgb(148, 163, 184),
                 BorderThickness = 1,
                 ForeColor = Color.FromArgb(51, 65, 85),
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold),
-                Cursor = Cursors.Hand
+                Cursor = Cursors.Hand,
+                Image = IconHelper.CreateCloseIcon(13, Color.FromArgb(51, 65, 85)),
+                ImageSize = new Size(13, 13),
+                ImageAlign = HorizontalAlignment.Left,
+                ImageOffset = new Point(8, 0),
+                TextOffset = new Point(4, 0)
             };
             btnCancel.Click += (s, e) => { this.DialogResult = DialogResult.Cancel; this.Close(); };
             actionPanel.Controls.Add(btnSave);
