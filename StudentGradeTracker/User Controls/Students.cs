@@ -57,7 +57,7 @@ namespace StudentGradeTracker
                 DefaultCellStyle =
                 {
                     Alignment = DataGridViewContentAlignment.MiddleCenter,
-                    ForeColor = Color.FromArgb(30, 64, 175),
+                    ForeColor = Color.FromArgb(39, 39, 39),
                     NullValue = false,
                     Padding = new Padding(5, 0, 5, 0)
                 }
@@ -69,7 +69,7 @@ namespace StudentGradeTracker
             {
                 Size = new Size(18, 18),
                 BackColor = Color.White,
-                ForeColor = Color.FromArgb(30, 64, 175),
+                ForeColor = Color.FromArgb(39, 39, 39),
                 FlatStyle = FlatStyle.Standard,
                 CheckAlign = ContentAlignment.MiddleCenter,
                 Location = new Point(6, 8),
@@ -191,10 +191,10 @@ namespace StudentGradeTracker
             dgvStudents.BorderStyle = BorderStyle.None;
             dgvStudents.GridColor = Color.FromArgb(226, 232, 240);
             dgvStudents.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 252);
-            dgvStudents.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(15, 23, 42);
-            dgvStudents.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(15, 23, 42);
-            dgvStudents.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(15, 23, 42);
-            _headerCheckBox!.BackColor = Color.FromArgb(15, 23, 42);
+            dgvStudents.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(39, 39, 39);
+            dgvStudents.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(39, 39, 39);
+            dgvStudents.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(39, 39, 39);
+            _headerCheckBox!.BackColor = Color.FromArgb(39, 39, 39);
             _headerCheckBox.ForeColor = Color.White;
         }
 
@@ -649,9 +649,9 @@ namespace StudentGradeTracker
                 TextOffset = new Point(2, 0)
             };
             btn.HoverState.FillColor = Color.FromArgb(254, 226, 226);
-            btn.HoverState.ForeColor = Color.FromArgb(185, 28, 28);
+            btn.HoverState.ForeColor = Color.FromArgb(160, 1, 0);
             btn.HoverState.BorderColor = Color.FromArgb(248, 113, 113);
-            btn.HoverState.Image = IconHelper.CreateCloseIcon(10, Color.FromArgb(185, 28, 28));
+            btn.HoverState.Image = IconHelper.CreateCloseIcon(10, Color.FromArgb(160, 1, 0));
             btn.Click += (s, e) => onRemove();
             flpActiveFilters.Controls.Add(btn);
         }

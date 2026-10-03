@@ -162,9 +162,9 @@ namespace StudentGradeTracker.User_Controls
             dgvExams.BorderStyle = BorderStyle.None;
             dgvExams.GridColor = Color.FromArgb(226, 232, 240);
             dgvExams.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 252);
-            dgvExams.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(15, 23, 42);
-            dgvExams.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(15, 23, 42);
-            dgvExams.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(15, 23, 42);
+            dgvExams.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(39, 39, 39);
+            dgvExams.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(39, 39, 39);
+            dgvExams.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(39, 39, 39);
         }
 
         private void WireEvents()
@@ -523,9 +523,9 @@ namespace StudentGradeTracker.User_Controls
                 TextOffset = new Point(2, 0)
             };
             btn.HoverState.FillColor = Color.FromArgb(254, 226, 226);
-            btn.HoverState.ForeColor = Color.FromArgb(185, 28, 28);
+            btn.HoverState.ForeColor = Color.FromArgb(160, 1, 0);
             btn.HoverState.BorderColor = Color.FromArgb(248, 113, 113);
-            btn.HoverState.Image = IconHelper.CreateCloseIcon(10, Color.FromArgb(185, 28, 28));
+            btn.HoverState.Image = IconHelper.CreateCloseIcon(10, Color.FromArgb(160, 1, 0));
             btn.Click += (s, e) => onRemove();
             flpActiveFiltersExams.Controls.Add(btn);
         }

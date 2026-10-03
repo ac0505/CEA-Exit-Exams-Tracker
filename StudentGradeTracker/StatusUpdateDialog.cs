@@ -54,7 +54,7 @@ namespace StudentGradeTracker
                 Size = new Size(145, 36),
                 BorderRadius = 8,
                 Animated = true,
-                FillColor = Color.FromArgb(30, 64, 175),
+                FillColor = Color.FromArgb(39, 39, 39),
                 ForeColor = Color.White,
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold),
                 Cursor = Cursors.Hand,

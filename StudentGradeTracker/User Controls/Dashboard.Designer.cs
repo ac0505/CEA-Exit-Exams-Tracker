@@ -122,7 +122,7 @@ namespace StudentGradeTracker.User_Controls
             lblCardTotalValue.AutoSize = true;
             lblCardTotalValue.BackColor = System.Drawing.Color.Transparent;
             lblCardTotalValue.Font = new System.Drawing.Font("Segoe UI", 22F, System.Drawing.FontStyle.Bold);
-            lblCardTotalValue.ForeColor = System.Drawing.Color.FromArgb(15, 23, 42);
+            lblCardTotalValue.ForeColor = System.Drawing.Color.FromArgb(39, 39, 39);
             lblCardTotalValue.Location = new System.Drawing.Point(14, 30);
             lblCardTotalValue.Name = "lblCardTotalValue";
             lblCardTotalValue.Size = new System.Drawing.Size(35, 41);
@@ -232,7 +232,7 @@ namespace StudentGradeTracker.User_Controls
             lblCardRateTitle.AutoSize = true;
             lblCardRateTitle.BackColor = System.Drawing.Color.Transparent;
             lblCardRateTitle.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            lblCardRateTitle.ForeColor = System.Drawing.Color.FromArgb(37, 99, 235);
+            lblCardRateTitle.ForeColor = System.Drawing.Color.FromArgb(0, 36, 85);
             lblCardRateTitle.Location = new System.Drawing.Point(16, 12);
             lblCardRateTitle.Name = "lblCardRateTitle";
             lblCardRateTitle.Size = new System.Drawing.Size(117, 13);
@@ -245,7 +245,7 @@ namespace StudentGradeTracker.User_Controls
             lblCardRateValue.AutoSize = true;
             lblCardRateValue.BackColor = System.Drawing.Color.Transparent;
             lblCardRateValue.Font = new System.Drawing.Font("Segoe UI", 22F, System.Drawing.FontStyle.Bold);
-            lblCardRateValue.ForeColor = System.Drawing.Color.FromArgb(30, 64, 175);
+            lblCardRateValue.ForeColor = System.Drawing.Color.FromArgb(0, 36, 85);
             lblCardRateValue.Location = new System.Drawing.Point(14, 30);
             lblCardRateValue.Name = "lblCardRateValue";
             lblCardRateValue.Size = new System.Drawing.Size(95, 41);
@@ -276,7 +276,7 @@ namespace StudentGradeTracker.User_Controls
             lblChartTitle.AutoSize = true;
             lblChartTitle.BackColor = System.Drawing.Color.Transparent;
             lblChartTitle.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
-            lblChartTitle.ForeColor = System.Drawing.Color.FromArgb(15, 23, 42);
+            lblChartTitle.ForeColor = System.Drawing.Color.FromArgb(39, 39, 39);
             lblChartTitle.Location = new System.Drawing.Point(16, 14);
             lblChartTitle.Name = "lblChartTitle";
             lblChartTitle.Size = new System.Drawing.Size(147, 19);
@@ -290,7 +290,7 @@ namespace StudentGradeTracker.User_Controls
             btnChartStatus.Animated = true;
             btnChartStatus.BorderRadius = 7;
             btnChartStatus.CustomizableEdges = customizableEdges6;
-            btnChartStatus.FillColor = System.Drawing.Color.FromArgb(30, 64, 175);
+            btnChartStatus.FillColor = System.Drawing.Color.FromArgb(39, 39, 39);
             btnChartStatus.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
             btnChartStatus.ForeColor = System.Drawing.Color.White;
             btnChartStatus.Location = new Point(210, 10);
@@ -346,7 +346,7 @@ namespace StudentGradeTracker.User_Controls
             // 
             lblChartFooterLeft.AutoSize = true;
             lblChartFooterLeft.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            lblChartFooterLeft.ForeColor = System.Drawing.Color.FromArgb(5, 150, 105);
+            lblChartFooterLeft.ForeColor = System.Drawing.Color.FromArgb(0, 36, 85);
             lblChartFooterLeft.Location = new System.Drawing.Point(4, 8);
             lblChartFooterLeft.Name = "lblChartFooterLeft";
             lblChartFooterLeft.Size = new System.Drawing.Size(53, 13);
@@ -359,7 +359,7 @@ namespace StudentGradeTracker.User_Controls
             lblChartFooterRight.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             lblChartFooterRight.AutoSize = true;
             lblChartFooterRight.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            lblChartFooterRight.ForeColor = System.Drawing.Color.FromArgb(217, 119, 6);
+            lblChartFooterRight.ForeColor = System.Drawing.Color.FromArgb(160, 1, 0);
             lblChartFooterRight.Location = new System.Drawing.Point(260, 8);
             lblChartFooterRight.Name = "lblChartFooterRight";
             lblChartFooterRight.Size = new System.Drawing.Size(84, 13);
@@ -389,7 +389,7 @@ namespace StudentGradeTracker.User_Controls
             lblTableTitle.AutoSize = true;
             lblTableTitle.BackColor = System.Drawing.Color.Transparent;
             lblTableTitle.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
-            lblTableTitle.ForeColor = System.Drawing.Color.FromArgb(15, 23, 42);
+            lblTableTitle.ForeColor = System.Drawing.Color.FromArgb(39, 39, 39);
             lblTableTitle.Location = new System.Drawing.Point(16, 14);
             lblTableTitle.Name = "lblTableTitle";
             lblTableTitle.Size = new System.Drawing.Size(142, 19);
@@ -441,10 +441,10 @@ namespace StudentGradeTracker.User_Controls
             dgvDashboard.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             dgvDashboard.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(15, 23, 42);
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(39, 39, 39);
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(15, 23, 42);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(39, 39, 39);
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             dgvDashboard.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
@@ -455,7 +455,7 @@ namespace StudentGradeTracker.User_Controls
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(51, 65, 85);
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(239, 246, 255);
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(30, 64, 175);
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(39, 39, 39);
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             dgvDashboard.DefaultCellStyle = dataGridViewCellStyle3;
             dgvDashboard.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -469,7 +469,7 @@ namespace StudentGradeTracker.User_Controls
             dgvDashboard.Size = new System.Drawing.Size(510, 308);
             dgvDashboard.TabIndex = 3;
             dgvDashboard.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(248, 250, 252);
-            dgvDashboard.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(15, 23, 42);
+            dgvDashboard.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(39, 39, 39);
             dgvDashboard.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             dgvDashboard.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             dgvDashboard.ThemeStyle.HeaderStyle.Height = 32;

@@ -58,7 +58,7 @@ namespace StudentGradeTracker
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(15, 23, 42);
+            panel1.BackColor = Color.FromArgb(39, 39, 39);
             panel1.Controls.Add(btnMinimize);
             panel1.Controls.Add(btnMaximize);
             panel1.Controls.Add(btnClose);
@@ -80,6 +80,7 @@ namespace StudentGradeTracker
             btnMinimize.FillColor = Color.Transparent;
             btnMinimize.Font = new Font("Segoe UI", 9F);
             btnMinimize.ForeColor = Color.White;
+            btnMinimize.HoverState.FillColor = Color.FromArgb(58, 58, 58);
             btnMinimize.Image = (Image)resources.GetObject("btnMinimize.Image");
             btnMinimize.ImageSize = new Size(15, 15);
             btnMinimize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -96,7 +97,7 @@ namespace StudentGradeTracker
             btnMaximize.FillColor = Color.Transparent;
             btnMaximize.Font = new Font("Segoe UI", 9F);
             btnMaximize.ForeColor = Color.White;
-            btnMaximize.HoverState.FillColor = Color.FromArgb(30, 41, 59);
+            btnMaximize.HoverState.FillColor = Color.FromArgb(58, 58, 58);
             btnMaximize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnMaximize.Location = new Point(916, 16);
             btnMaximize.Name = "btnMaximize";

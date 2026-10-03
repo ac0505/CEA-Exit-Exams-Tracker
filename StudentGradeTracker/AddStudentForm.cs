@@ -58,7 +58,7 @@ namespace StudentGradeTracker
             var headerPanel = new Panel
             {
                 Dock = DockStyle.Fill,
-                BackColor = Color.FromArgb(15, 23, 42)
+                BackColor = Color.FromArgb(39, 39, 39)
             };
             var lblTitle = new Label
             {
@@ -160,7 +160,7 @@ namespace StudentGradeTracker
                 Size = new Size(145, 38),
                 BorderRadius = 8,
                 Animated = true,
-                FillColor = Color.FromArgb(30, 64, 175),
+                FillColor = Color.FromArgb(39, 39, 39),
                 ForeColor = Color.White,
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold),
                 Cursor = Cursors.Hand,

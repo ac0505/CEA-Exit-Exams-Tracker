@@ -86,7 +86,7 @@ namespace StudentGradeTracker.User_Controls
             btnFilterCourses.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             btnFilterCourses.BorderRadius = 4;
             btnFilterCourses.CustomizableEdges = customizableEdges3;
-            btnFilterCourses.FillColor = System.Drawing.Color.FromArgb(30, 64, 175);
+            btnFilterCourses.FillColor = System.Drawing.Color.FromArgb(39, 39, 39);
             btnFilterCourses.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             btnFilterCourses.ForeColor = System.Drawing.Color.White;
             btnFilterCourses.Location = new System.Drawing.Point(828, 30);
@@ -122,10 +122,10 @@ namespace StudentGradeTracker.User_Controls
             dgvExams.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             dgvExams.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(48, 48, 48); // #303030
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(39, 39, 39);
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(39, 39, 39);
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             dgvExams.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
@@ -152,7 +152,7 @@ namespace StudentGradeTracker.User_Controls
             dgvExams.Size = new System.Drawing.Size(895, 395);
             dgvExams.TabIndex = 3;
             dgvExams.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
-            dgvExams.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            dgvExams.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(39, 39, 39);
             dgvExams.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             dgvExams.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             dgvExams.ThemeStyle.HeaderStyle.Height = 32;
@@ -381,7 +381,7 @@ namespace StudentGradeTracker.User_Controls
             // btnApply
             // 
             btnApply.BorderRadius = 4;
-            btnApply.FillColor = System.Drawing.Color.FromArgb(30, 64, 175);
+            btnApply.FillColor = System.Drawing.Color.FromArgb(39, 39, 39);
             btnApply.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             btnApply.ForeColor = System.Drawing.Color.White;
             btnApply.Location = new System.Drawing.Point(257, 255);

@@ -57,7 +57,7 @@ namespace StudentGradeTracker
             btnClose.Image = IconHelper.CreateCloseIcon(12, Color.White);
             btnClose.ImageSize = new Size(12, 12);
             btnClose.ImageAlign = HorizontalAlignment.Center;
-            btnClose.HoverState.FillColor = Color.FromArgb(220, 38, 38);
+            btnClose.HoverState.FillColor = Color.FromArgb(160, 1, 0);
 
             // Configure navigation buttons with larger vector icons and smooth animations
             foreach (var btn in new[] { btnDashboard, btnStudents, btnExams })
@@ -172,21 +172,21 @@ namespace StudentGradeTracker
             if (_activeView == control) return;
 
             // Update button styles with clean, larger vector icons
-            ResetTabButton(btnDashboard, IconHelper.CreateDashboardIcon(20, Color.FromArgb(71, 85, 105)));
-            ResetTabButton(btnStudents, IconHelper.CreateStudentsIcon(20, Color.FromArgb(71, 85, 105)));
-            ResetTabButton(btnExams, IconHelper.CreateExamsIcon(20, Color.FromArgb(71, 85, 105)));
+            ResetTabButton(btnDashboard, IconHelper.CreateDashboardIcon(20, Color.FromArgb(100, 116, 139)));
+            ResetTabButton(btnStudents, IconHelper.CreateStudentsIcon(20, Color.FromArgb(100, 116, 139)));
+            ResetTabButton(btnExams, IconHelper.CreateExamsIcon(20, Color.FromArgb(100, 116, 139)));
 
             activeButton.CustomBorderThickness = new Padding(0, 0, 0, 3);
-            activeButton.CustomBorderColor = Color.FromArgb(37, 99, 235);
-            activeButton.ForeColor = Color.FromArgb(30, 64, 175);
-            activeButton.FillColor = Color.FromArgb(239, 246, 255);
+            activeButton.CustomBorderColor = Color.FromArgb(160, 1, 0);
+            activeButton.ForeColor = Color.FromArgb(160, 1, 0);
+            activeButton.FillColor = Color.White;
 
             if (activeButton == btnDashboard)
-                activeButton.Image = IconHelper.CreateDashboardIcon(20, Color.FromArgb(30, 64, 175));
+                activeButton.Image = IconHelper.CreateDashboardIcon(20, Color.FromArgb(160, 1, 0));
             else if (activeButton == btnStudents)
-                activeButton.Image = IconHelper.CreateStudentsIcon(20, Color.FromArgb(30, 64, 175));
+                activeButton.Image = IconHelper.CreateStudentsIcon(20, Color.FromArgb(160, 1, 0));
             else if (activeButton == btnExams)
-                activeButton.Image = IconHelper.CreateExamsIcon(20, Color.FromArgb(30, 64, 175));
+                activeButton.Image = IconHelper.CreateExamsIcon(20, Color.FromArgb(160, 1, 0));
 
             // Smooth view switch
             pnlContainer.SuspendLayout();

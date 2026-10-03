@@ -91,7 +91,28 @@ namespace StudentGradeTracker.User_Controls
             pnlTableCard.ShadowDecoration.Depth = 6;
             pnlTableCard.ShadowDecoration.Color = Color.FromArgb(20, 0, 0, 0);
 
-            gunaChart.Animation.Easing = Easing.EaseInOutQuart;
+            // Responsive chart animation and sleek tooltip styling
+            gunaChart.Animation.Duration = 150;
+            gunaChart.Animation.Easing = Easing.EaseOutQuad;
+
+            gunaChart.Tooltips.CornerRadius = 6;
+            gunaChart.Tooltips.BackgroundColor = Color.FromArgb(230, 39, 39, 39);
+            gunaChart.Tooltips.TitleFont.Name = "Segoe UI";
+            gunaChart.Tooltips.TitleFont.Size = 9;
+            gunaChart.Tooltips.BodyFont.Name = "Segoe UI";
+            gunaChart.Tooltips.BodyFont.Size = 8;
+            gunaChart.Tooltips.TitleForeColor = Color.White;
+            gunaChart.Tooltips.BodyForeColor = Color.White;
+            gunaChart.Tooltips.BorderWidth = 0;
+
+            // Enable double buffering on chart container to prevent repaint flicker
+            try
+            {
+                var dblProp = typeof(Control).GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                dblProp?.SetValue(gunaChart, true);
+                dblProp?.SetValue(pnlChartCard, true);
+            }
+            catch { }
         }
 
         private void LayoutDashboard()
@@ -150,7 +171,7 @@ namespace StudentGradeTracker.User_Controls
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
                 FillWeight = 130,
                 ReadOnly = true,
-                DefaultCellStyle = { Font = new Font("Segoe UI", 9F, FontStyle.Bold), ForeColor = Color.FromArgb(15, 23, 42) }
+                DefaultCellStyle = { Font = new Font("Segoe UI", 9F, FontStyle.Bold), ForeColor = Color.FromArgb(39, 39, 39) }
             };
 
             var colTotal = new DataGridViewTextBoxColumn
@@ -208,7 +229,7 @@ namespace StudentGradeTracker.User_Controls
             {
                 if (e.CellStyle == null) return;
                 e.CellStyle.SelectionBackColor = Color.FromArgb(239, 246, 255);
-                e.CellStyle.SelectionForeColor = Color.FromArgb(30, 64, 175);
+                e.CellStyle.SelectionForeColor = Color.FromArgb(39, 39, 39);
 
                 if (e.RowIndex >= 0 && e.ColumnIndex == colRate.Index)
                 {
@@ -269,7 +290,7 @@ namespace StudentGradeTracker.User_Controls
         {
             if (_isStatusChartMode)
             {
-                btnChartStatus.FillColor = Color.FromArgb(30, 64, 175);
+                btnChartStatus.FillColor = Color.FromArgb(39, 39, 39);
                 btnChartStatus.ForeColor = Color.White;
                 btnChartStatus.BorderThickness = 0;
                 btnChartStatus.Image = IconHelper.CreatePieIcon(14, Color.White);
@@ -282,7 +303,7 @@ namespace StudentGradeTracker.User_Controls
             }
             else
             {
-                btnChartCourse.FillColor = Color.FromArgb(30, 64, 175);
+                btnChartCourse.FillColor = Color.FromArgb(39, 39, 39);
                 btnChartCourse.ForeColor = Color.White;
                 btnChartCourse.BorderThickness = 0;
                 btnChartCourse.Image = IconHelper.CreateChartIcon(14, Color.White);
@@ -316,18 +337,25 @@ namespace StudentGradeTracker.User_Controls
             gunaChart.Title.Text = "Examinee Overall Status";
             gunaChart.Legend.Position = LegendPosition.Bottom;
 
+            // Fast, responsive animation so hover indications pop up instantly without lag
+            gunaChart.Animation.Duration = 150;
+            gunaChart.Animation.Easing = Easing.EaseOutQuad;
+
             // Completely remove the graph lines and axes for pie/doughnut chart section
             gunaChart.XAxes.Display = false;
             gunaChart.YAxes.Display = false;
 
             var doughnut = new GunaDoughnutDataset
             {
-                Label = "Examinee Status"
+                Label = "Examinee Status",
+                BorderWidth = 2
             };
 
-            // Emerald for Passed, Amber for Completion
-            doughnut.FillColors.Add(Color.FromArgb(16, 185, 129));
-            doughnut.FillColors.Add(Color.FromArgb(245, 158, 11));
+            // Mapúa Blue for Passed, Mapúa Red for Completion with clean white separation border
+            doughnut.FillColors.Add(Color.FromArgb(0, 36, 85));
+            doughnut.FillColors.Add(Color.FromArgb(160, 1, 0));
+            doughnut.BorderColors.Add(Color.White);
+            doughnut.BorderColors.Add(Color.White);
 
             doughnut.DataPoints.Add("Passed", _totalPassed);
             doughnut.DataPoints.Add("Completion", _totalCompletion);
@@ -339,6 +367,9 @@ namespace StudentGradeTracker.User_Controls
         {
             gunaChart.Title.Text = "Passing Rate (%) by Course";
             gunaChart.Legend.Position = LegendPosition.Bottom;
+
+            gunaChart.Animation.Duration = 300;
+            gunaChart.Animation.Easing = Easing.EaseOutQuad;
 
             // Retain graph lines and axes for progress bar / bar chart section
             gunaChart.XAxes.Display = true;
