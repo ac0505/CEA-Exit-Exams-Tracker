@@ -22,6 +22,8 @@ namespace StudentGradeTracker
             this.MinimizeBox = false;
             this.StartPosition = FormStartPosition.CenterParent;
             this.BackColor = Color.FromArgb(248, 249, 252);
+            this.AutoScaleMode = AutoScaleMode.Dpi;
+            this.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
 
             var lblPrompt = new Label
             {
@@ -37,7 +39,7 @@ namespace StudentGradeTracker
             {
                 Location = new Point(25, 60),
                 Size = new Size(310, 36),
-                BorderRadius = 4,
+                BorderRadius = 8,
                 DropDownStyle = ComboBoxStyle.DropDownList,
                 Font = new Font("Segoe UI", 9.5F)
             };
@@ -50,11 +52,17 @@ namespace StudentGradeTracker
                 Text = "Update",
                 Location = new Point(25, 120),
                 Size = new Size(145, 36),
-                BorderRadius = 4,
-                FillColor = Color.FromArgb(39, 39, 39), // #272727
+                BorderRadius = 8,
+                Animated = true,
+                FillColor = Color.FromArgb(39, 39, 39),
                 ForeColor = Color.White,
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold),
-                Cursor = Cursors.Hand
+                Cursor = Cursors.Hand,
+                Image = IconHelper.CreateCheckIcon(13, Color.White),
+                ImageSize = new Size(13, 13),
+                ImageAlign = HorizontalAlignment.Left,
+                ImageOffset = new Point(10, 0),
+                TextOffset = new Point(4, 0)
             };
             btnConfirm.Click += (s, e) =>
             {
@@ -77,11 +85,19 @@ namespace StudentGradeTracker
                 Text = "Cancel",
                 Location = new Point(190, 120),
                 Size = new Size(145, 36),
-                BorderRadius = 4,
-                FillColor = Color.FromArgb(220, 220, 220),
-                ForeColor = Color.FromArgb(50, 50, 50),
+                BorderRadius = 8,
+                Animated = true,
+                FillColor = Color.Transparent,
+                BorderColor = Color.FromArgb(148, 163, 184),
+                BorderThickness = 1,
+                ForeColor = Color.FromArgb(51, 65, 85),
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold),
-                Cursor = Cursors.Hand
+                Cursor = Cursors.Hand,
+                Image = IconHelper.CreateCloseIcon(13, Color.FromArgb(51, 65, 85)),
+                ImageSize = new Size(13, 13),
+                ImageAlign = HorizontalAlignment.Left,
+                ImageOffset = new Point(10, 0),
+                TextOffset = new Point(4, 0)
             };
             btnCancel.Click += (s, e) =>
             {

@@ -13,6 +13,8 @@ namespace StudentGradeTracker
         private List<StudentRecord> _filteredStudents = new List<StudentRecord>();
         private readonly HashSet<StudentRecord> _selectedStudents = new HashSet<StudentRecord>();
         private bool _isUpdatingFilterOptions = false;
+        private bool _isUpdatingSelection = false;
+        private bool _isSelectionMode = false;
         private CheckBox? _headerCheckBox;
 
         public Students()
@@ -21,6 +23,10 @@ namespace StudentGradeTracker
             SetupGridColumns();
             SetupFilterControls();
             WireEvents();
+            ApplyVisualStyle();
+
+            this.Resize += (s, e) => AdjustGridLayout();
+            AdjustGridLayout();
 
             ExcelDatabaseManager.Instance.DataChanged += OnDataChanged;
             this.Load += (s, e) => LoadStudentData();
@@ -30,32 +36,45 @@ namespace StudentGradeTracker
         {
             dgvStudents.AutoGenerateColumns = false;
             dgvStudents.Columns.Clear();
-            dgvStudents.ReadOnly = true;
+            dgvStudents.ReadOnly = false;
             dgvStudents.EditMode = DataGridViewEditMode.EditProgrammatically;
             dgvStudents.AllowUserToResizeColumns = false;
             dgvStudents.AllowUserToResizeRows = false;
             dgvStudents.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvStudents.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dgvStudents.ColumnHeadersHeight = 30;
+            dgvStudents.ColumnHeadersHeight = 34;
 
             // Mass Selection CheckBox Column
             var chkCol = new DataGridViewCheckBoxColumn
             {
                 Name = "colSelect",
                 HeaderText = "",
-                Width = 36,
+                Width = 30,
                 Resizable = DataGridViewTriState.False,
-                ReadOnly = false
+                ReadOnly = true,
+                Visible = false,
+                FlatStyle = FlatStyle.Flat,
+                DefaultCellStyle =
+                {
+                    Alignment = DataGridViewContentAlignment.MiddleCenter,
+                    ForeColor = Color.FromArgb(39, 39, 39),
+                    NullValue = false,
+                    Padding = new Padding(5, 0, 5, 0)
+                }
             };
             dgvStudents.Columns.Add(chkCol);
 
             // Add Header CheckBox for Select All
             _headerCheckBox = new CheckBox
             {
-                Size = new Size(15, 15),
-                BackColor = Color.FromArgb(48, 48, 48),
-                Location = new Point(10, 8),
-                Cursor = Cursors.Hand
+                Size = new Size(18, 18),
+                BackColor = Color.White,
+                ForeColor = Color.FromArgb(39, 39, 39),
+                FlatStyle = FlatStyle.Standard,
+                CheckAlign = ContentAlignment.MiddleCenter,
+                Location = new Point(6, 8),
+                Cursor = Cursors.Hand,
+                Visible = false
             };
             _headerCheckBox.CheckedChanged += HeaderCheckBox_CheckedChanged;
             dgvStudents.Controls.Add(_headerCheckBox);
@@ -73,7 +92,110 @@ namespace StudentGradeTracker
 
             dgvStudents.CellFormatting += DgvStudents_CellFormatting;
             dgvStudents.CellContentClick += DgvStudents_CellContentClick;
+            dgvStudents.CellValueChanged += DgvStudents_CellValueChanged;
+            dgvStudents.CellClick += DgvStudents_CellClick;
+            dgvStudents.CurrentCellDirtyStateChanged += (s, e) =>
+            {
+                if (dgvStudents.IsCurrentCellDirty && dgvStudents.CurrentCell?.OwningColumn.Name == "colSelect")
+                    dgvStudents.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            };
             dgvStudents.SelectionChanged += (s, e) => dgvStudents.ClearSelection();
+        }
+
+        private void ApplyVisualStyle()
+        {
+            BackColor = Color.FromArgb(241, 245, 249);
+
+            txtSearchStudents.BorderRadius = 8;
+            txtSearchStudents.BorderColor = Color.FromArgb(203, 213, 225);
+            txtSearchStudents.FillColor = Color.White;
+            txtSearchStudents.IconLeft = IconHelper.CreateSearchIcon(14, Color.FromArgb(148, 163, 184));
+            txtSearchStudents.IconLeftSize = new Size(14, 14);
+            txtSearchStudents.IconLeftOffset = new Point(8, 0);
+            txtSearchStudents.Animated = true;
+
+            // Action buttons with crisp vector icons, left alignment and clean spacing
+            foreach (var btn in new[] { btnAddStudent, btnUpload, btnFilter, btnSelect })
+            {
+                btn.Animated = true;
+                btn.BorderRadius = 8;
+                btn.TextAlign = HorizontalAlignment.Left;
+                btn.ImageAlign = HorizontalAlignment.Left;
+                btn.ImageOffset = new Point(10, 0);
+                btn.TextOffset = new Point(8, 0);
+            }
+
+            btnAddStudent.Image = IconHelper.CreatePlusIcon(13, Color.White);
+            btnAddStudent.ImageSize = new Size(13, 13);
+
+            btnUpload.Image = IconHelper.CreateUploadIcon(13, Color.White);
+            btnUpload.ImageSize = new Size(13, 13);
+
+            btnFilter.Image = IconHelper.CreateFilterIcon(13, Color.White);
+            btnFilter.ImageSize = new Size(13, 13);
+
+            btnSelect.Image = IconHelper.CreateCheckIcon(13, Color.White);
+            btnSelect.ImageSize = new Size(13, 13);
+
+            // Action labels aligned with identical TextAlign and TextOffset
+            foreach (var button in new[] { btnMassUpdate, btnMassDelete, btnCancelSelection })
+            {
+                button.BorderRadius = 8;
+                button.Animated = true;
+                button.TextAlign = HorizontalAlignment.Left;
+                button.ImageAlign = HorizontalAlignment.Left;
+                button.ImageOffset = new Point(10, 0);
+                button.TextOffset = new Point(8, 0);
+            }
+
+            btnCancelSelection.Image = IconHelper.CreateCloseIcon(13, Color.FromArgb(51, 65, 85));
+            btnCancelSelection.ImageSize = new Size(13, 13);
+
+            btnMassUpdate.Image = IconHelper.CreateEditIcon(13, Color.White);
+            btnMassUpdate.ImageSize = new Size(13, 13);
+
+            btnMassDelete.Image = IconHelper.CreateDeleteIcon(13, Color.White);
+            btnMassDelete.ImageSize = new Size(13, 13);
+
+            // Filter popup panel styling
+            pnlFilterStudents.FillColor = Color.White;
+            pnlFilterStudents.BorderColor = Color.FromArgb(226, 232, 240);
+            pnlFilterStudents.BorderRadius = 14;
+            pnlFilterStudents.ShadowDecoration.Enabled = true;
+            pnlFilterStudents.ShadowDecoration.Depth = 8;
+            pnlFilterStudents.ShadowDecoration.Color = Color.FromArgb(20, 0, 0, 0);
+
+            btnClose.Text = string.Empty;
+            btnClose.Image = IconHelper.CreateCloseIcon(12, Color.FromArgb(100, 116, 139));
+            btnClose.ImageSize = new Size(12, 12);
+            btnClose.Animated = true;
+
+            btnReset.Image = IconHelper.CreateResetIcon(13, Color.FromArgb(51, 65, 85));
+            btnReset.ImageSize = new Size(13, 13);
+            btnReset.TextAlign = HorizontalAlignment.Left;
+            btnReset.ImageAlign = HorizontalAlignment.Left;
+            btnReset.ImageOffset = new Point(10, 0);
+            btnReset.TextOffset = new Point(8, 0);
+            btnReset.Animated = true;
+            btnReset.BorderRadius = 8;
+
+            btnApply.Image = IconHelper.CreateCheckIcon(13, Color.White);
+            btnApply.ImageSize = new Size(13, 13);
+            btnApply.TextAlign = HorizontalAlignment.Left;
+            btnApply.ImageAlign = HorizontalAlignment.Left;
+            btnApply.ImageOffset = new Point(10, 0);
+            btnApply.TextOffset = new Point(8, 0);
+            btnApply.Animated = true;
+            btnApply.BorderRadius = 8;
+
+            dgvStudents.BorderStyle = BorderStyle.None;
+            dgvStudents.GridColor = Color.FromArgb(226, 232, 240);
+            dgvStudents.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 252);
+            dgvStudents.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(39, 39, 39);
+            dgvStudents.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(39, 39, 39);
+            dgvStudents.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(39, 39, 39);
+            _headerCheckBox!.BackColor = Color.FromArgb(39, 39, 39);
+            _headerCheckBox.ForeColor = Color.White;
         }
 
         private void AddTextCol(string propName, string headerText, int minWidth, DataGridViewAutoSizeColumnMode mode)
@@ -121,29 +243,47 @@ namespace StudentGradeTracker
 
         private void DgvStudents_CellContentClick(object? sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && dgvStudents.Columns["colSelect"] != null && e.ColumnIndex == dgvStudents.Columns["colSelect"]!.Index)
-            {
+            if (_isSelectionMode && e.RowIndex >= 0 && e.ColumnIndex == dgvStudents.Columns["colSelect"].Index)
                 dgvStudents.CommitEdit(DataGridViewDataErrorContexts.Commit);
-                var row = dgvStudents.Rows[e.RowIndex];
-                if (row.DataBoundItem is StudentRecord student)
-                {
-                    bool isChecked = Convert.ToBoolean(row.Cells["colSelect"].Value);
-                    student.IsSelected = isChecked;
+        }
 
-                    if (isChecked)
-                        _selectedStudents.Add(student);
-                    else
-                        _selectedStudents.Remove(student);
+        private void DgvStudents_CellClick(object? sender, DataGridViewCellEventArgs e)
+        {
+            if (!_isSelectionMode || e.RowIndex < 0 || e.ColumnIndex == dgvStudents.Columns["colSelect"].Index)
+                return;
 
-                    UpdateMassActionButtons();
-                }
-            }
+            var cell = dgvStudents.Rows[e.RowIndex].Cells["colSelect"];
+            cell.Value = !Convert.ToBoolean(cell.Value ?? false);
+        }
+
+        private void DgvStudents_CellValueChanged(object? sender, DataGridViewCellEventArgs e)
+        {
+            if (!_isSelectionMode || _isUpdatingSelection || e.RowIndex < 0 || e.ColumnIndex < 0 ||
+                dgvStudents.Columns[e.ColumnIndex].Name != "colSelect")
+                return;
+
+            var row = dgvStudents.Rows[e.RowIndex];
+            if (row.DataBoundItem is not StudentRecord student)
+                return;
+
+            bool isSelected = Convert.ToBoolean(row.Cells["colSelect"].Value ?? false);
+            student.IsSelected = isSelected;
+            if (isSelected)
+                _selectedStudents.Add(student);
+            else
+                _selectedStudents.Remove(student);
+
+            UpdateHeaderCheckBox();
+            UpdateMassActionButtons();
         }
 
         private void HeaderCheckBox_CheckedChanged(object? sender, EventArgs e)
         {
-            bool isChecked = _headerCheckBox?.Checked ?? false;
+            if (!_isSelectionMode || _isUpdatingSelection)
+                return;
 
+            bool isChecked = _headerCheckBox?.Checked ?? false;
+            _isUpdatingSelection = true;
             foreach (var student in _filteredStudents)
             {
                 student.IsSelected = isChecked;
@@ -157,6 +297,60 @@ namespace StudentGradeTracker
             {
                 row.Cells["colSelect"].Value = isChecked;
             }
+            _isUpdatingSelection = false;
+
+            UpdateHeaderCheckBox();
+            UpdateMassActionButtons();
+        }
+
+        private void UpdateHeaderCheckBox()
+        {
+            if (_headerCheckBox == null || !_isSelectionMode)
+                return;
+
+            bool allVisibleSelected = _filteredStudents.Count > 0 && _filteredStudents.All(_selectedStudents.Contains);
+            _headerCheckBox.Enabled = _filteredStudents.Count > 0;
+            _isUpdatingSelection = true;
+            _headerCheckBox.Checked = allVisibleSelected;
+            _isUpdatingSelection = false;
+        }
+
+        private void StartSelectionMode()
+        {
+            _isSelectionMode = true;
+            dgvStudents.EditMode = DataGridViewEditMode.EditOnEnter;
+            dgvStudents.Columns["colSelect"].Visible = true;
+            dgvStudents.Columns["colSelect"].ReadOnly = false;
+            if (_headerCheckBox != null)
+            {
+                _headerCheckBox.Visible = true;
+                _headerCheckBox.BringToFront();
+            }
+
+            UpdateMassActionButtons();
+        }
+
+        private void CancelSelectionMode()
+        {
+            _isUpdatingSelection = true;
+            _isSelectionMode = false;
+            if (dgvStudents.IsCurrentCellInEditMode)
+                dgvStudents.CancelEdit();
+            dgvStudents.CurrentCell = null;
+            _selectedStudents.Clear();
+            foreach (var student in _allStudents)
+                student.IsSelected = false;
+            foreach (DataGridViewRow row in dgvStudents.Rows)
+                row.Cells["colSelect"].Value = false;
+            if (_headerCheckBox != null)
+                _headerCheckBox.Checked = false;
+            _isUpdatingSelection = false;
+
+            dgvStudents.Columns["colSelect"].ReadOnly = true;
+            dgvStudents.Columns["colSelect"].Visible = false;
+            dgvStudents.EditMode = DataGridViewEditMode.EditProgrammatically;
+            if (_headerCheckBox != null)
+                _headerCheckBox.Visible = false;
 
             UpdateMassActionButtons();
         }
@@ -164,7 +358,10 @@ namespace StudentGradeTracker
         private void UpdateMassActionButtons()
         {
             int count = _selectedStudents.Count;
-            if (count > 0)
+            btnSelect.Visible = !_isSelectionMode;
+            btnCancelSelection.Visible = _isSelectionMode;
+
+            if (_isSelectionMode && count > 0)
             {
                 btnMassUpdate.Text = $"Update Status ({count})";
                 btnMassDelete.Text = $"Delete ({count})";
@@ -176,6 +373,8 @@ namespace StudentGradeTracker
                 btnMassUpdate.Visible = false;
                 btnMassDelete.Visible = false;
             }
+
+            AdjustGridLayout();
         }
 
         private void SetupFilterControls()
@@ -240,6 +439,8 @@ namespace StudentGradeTracker
 
             btnAddStudent.Click += BtnAddStudent_Click;
             btnUpload.Click += BtnUpload_Click;
+            btnSelect.Click += (s, e) => StartSelectionMode();
+            btnCancelSelection.Click += (s, e) => CancelSelectionMode();
             btnMassUpdate.Click += BtnMassUpdate_Click;
             btnMassDelete.Click += BtnMassDelete_Click;
         }
@@ -247,9 +448,7 @@ namespace StudentGradeTracker
         public void LoadStudentData()
         {
             _allStudents = ExcelDatabaseManager.Instance.GetAllStudents();
-            _selectedStudents.Clear();
-            UpdateMassActionButtons();
-            if (_headerCheckBox != null) _headerCheckBox.Checked = false;
+            CancelSelectionMode();
 
             UpdateDynamicFilterCombos();
             ApplyFilters();
@@ -369,6 +568,7 @@ namespace StudentGradeTracker
                 student.IsSelected = _selectedStudents.Contains(student);
             }
 
+            _isUpdatingSelection = true;
             dgvStudents.DataSource = null;
             dgvStudents.DataSource = _filteredStudents;
 
@@ -380,6 +580,8 @@ namespace StudentGradeTracker
                     dgvStudents.Rows[i].Cells["colSelect"].Value = rec.IsSelected;
                 }
             }
+            _isUpdatingSelection = false;
+            UpdateHeaderCheckBox();
 
             // Check if selected program has no records
             if (_filteredStudents.Count == 0 && selProgram != "All Programs")
@@ -428,44 +630,89 @@ namespace StudentGradeTracker
         {
             var btn = new Guna2Button
             {
-                Text = $"✕  {text}",
+                Text = text,
                 Height = 28,
                 AutoSize = true,
                 BorderRadius = 14,
                 BorderThickness = 1,
-                BorderColor = Color.FromArgb(208, 208, 208),
-                FillColor = Color.FromArgb(245, 245, 245),
-                ForeColor = Color.FromArgb(39, 39, 39),
-                Font = new Font("Segoe UI", 8.5F, FontStyle.Bold),
+                BorderColor = Color.FromArgb(226, 232, 240),
+                FillColor = Color.FromArgb(241, 245, 249),
+                ForeColor = Color.FromArgb(51, 65, 85),
+                Font = new Font("Segoe UI", 8.25F, FontStyle.Bold),
                 Margin = new Padding(0, 0, 8, 4),
-                Cursor = Cursors.Hand
+                Cursor = Cursors.Hand,
+                Animated = true,
+                Image = IconHelper.CreateCloseIcon(10, Color.FromArgb(100, 116, 139)),
+                ImageSize = new Size(10, 10),
+                ImageAlign = HorizontalAlignment.Left,
+                ImageOffset = new Point(2, 0),
+                TextOffset = new Point(2, 0)
             };
             btn.HoverState.FillColor = Color.FromArgb(254, 226, 226);
-            btn.HoverState.ForeColor = Color.FromArgb(185, 28, 28);
+            btn.HoverState.ForeColor = Color.FromArgb(160, 1, 0);
             btn.HoverState.BorderColor = Color.FromArgb(248, 113, 113);
+            btn.HoverState.Image = IconHelper.CreateCloseIcon(10, Color.FromArgb(160, 1, 0));
             btn.Click += (s, e) => onRemove();
             flpActiveFilters.Controls.Add(btn);
         }
 
         private void AdjustGridLayout()
         {
-            int top = 76;
+            const int left = 45;
+            const int right = 45;
+            const int gap = 8;
+            const int buttonY = 36;
+            int width = ClientSize.Width;
+
+            int searchRight;
+            if (_isSelectionMode)
+            {
+                btnAddStudent.Visible = false;
+                btnUpload.Visible = false;
+                btnFilter.Visible = false;
+                btnSelect.Visible = false;
+                btnCancelSelection.Bounds = new Rectangle(width - right - 96, buttonY, 96, 36);
+                btnMassDelete.Bounds = new Rectangle(btnCancelSelection.Left - gap - 115, buttonY, 115, 36);
+                btnMassUpdate.Bounds = new Rectangle(btnMassDelete.Left - gap - 160, buttonY, 160, 36);
+                searchRight = btnMassUpdate.Left;
+            }
+            else
+            {
+                btnAddStudent.Visible = true;
+                btnUpload.Visible = true;
+                btnFilter.Visible = true;
+                btnSelect.Visible = true;
+                btnCancelSelection.Visible = false;
+                btnSelect.Bounds = new Rectangle(width - right - 96, buttonY, 96, 36);
+                btnFilter.Bounds = new Rectangle(btnSelect.Left - gap - 96, buttonY, 96, 36);
+                btnUpload.Bounds = new Rectangle(btnFilter.Left - gap - 132, buttonY, 132, 36);
+                btnAddStudent.Bounds = new Rectangle(btnUpload.Left - gap - 132, buttonY, 132, 36);
+                searchRight = btnAddStudent.Left;
+            }
+
+            txtSearchStudents.Bounds = new Rectangle(left, buttonY,
+                Math.Min(320, Math.Max(160, searchRight - left - gap)), 36);
+
+            int top = 78;
+            flpActiveFilters.Location = new Point(left, top);
+            flpActiveFilters.Width = Math.Max(0, width - left - right);
+            flpActiveFilters.MinimumSize = Size.Empty;
+            flpActiveFilters.MaximumSize = new Size(Math.Max(0, width - left - right), 45);
 
             if (flpActiveFilters.Controls.Count > 0)
             {
                 flpActiveFilters.Visible = true;
-                flpActiveFilters.Location = new Point(53, top);
                 top += flpActiveFilters.PreferredSize.Height + 8;
             }
             else
             {
                 flpActiveFilters.Visible = false;
-                top = 80;
+                top = 90;
             }
 
-            dgvStudents.Location = new Point(53, top);
-            dgvStudents.Height = this.ClientSize.Height - top - 25;
-            dgvStudents.Width = this.ClientSize.Width - 106;
+            dgvStudents.Location = new Point(left, top);
+            dgvStudents.Height = Math.Max(100, ClientSize.Height - top - 25);
+            dgvStudents.Width = Math.Max(100, width - left - right);
         }
 
         private void ResetFilters()

@@ -31,184 +31,215 @@ namespace StudentGradeTracker
         private void InitializeComponent()
         {
             this.Text = "Add Student Record";
-            this.Size = new Size(520, 620);
-            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.Size = new Size(620, 700);
+            this.MinimumSize = new Size(520, 620);
+            this.FormBorderStyle = FormBorderStyle.Sizable;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.StartPosition = FormStartPosition.CenterParent;
-            this.BackColor = Color.FromArgb(248, 249, 252);
+            this.BackColor = Color.FromArgb(241, 245, 249);
+            this.AutoScaleMode = AutoScaleMode.Dpi;
             this.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+
+            var rootLayout = new TableLayoutPanel
+            {
+                Dock = DockStyle.Fill,
+                ColumnCount = 1,
+                RowCount = 3,
+                Margin = Padding.Empty,
+                Padding = Padding.Empty,
+                BackColor = BackColor
+            };
+            rootLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            rootLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 64F));
+            rootLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            rootLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 64F));
 
             var headerPanel = new Panel
             {
-                Dock = DockStyle.Top,
-                Height = 60,
+                Dock = DockStyle.Fill,
                 BackColor = Color.FromArgb(39, 39, 39)
             };
-
             var lblTitle = new Label
             {
                 Text = "Add New Student Record",
-                Font = new Font("Segoe UI", 12F, FontStyle.Bold),
+                Font = new Font("Segoe UI", 13F, FontStyle.Bold),
                 ForeColor = Color.White,
-                Location = new Point(20, 16),
-                AutoSize = true
+                Dock = DockStyle.Fill,
+                Padding = new Padding(20, 0, 0, 0),
+                TextAlign = ContentAlignment.MiddleLeft
             };
             headerPanel.Controls.Add(lblTitle);
-            this.Controls.Add(headerPanel);
 
-            int startY = 75;
-            int rowHeight = 44;
-            int labelWidth = 110;
-            int inputWidth = 340;
-            int leftCol = 25;
-
-            // School ID
-            CreateRow("School ID *:", ref startY, rowHeight, labelWidth, leftCol, out txtSchoolID);
-            txtSchoolID.PlaceholderText = "e.g., 2021-12345";
-
-            // First Name
-            CreateRow("First Name *:", ref startY, rowHeight, labelWidth, leftCol, out txtFirstName);
-            txtFirstName.PlaceholderText = "First Name";
-
-            // Last Name
-            CreateRow("Last Name *:", ref startY, rowHeight, labelWidth, leftCol, out txtLastName);
-            txtLastName.PlaceholderText = "Last Name";
-
-            // Middle Initial
-            CreateRow("M.I:", ref startY, rowHeight, labelWidth, leftCol, out txtMiddleInitial);
-            txtMiddleInitial.MaxLength = 5;
-            txtMiddleInitial.PlaceholderText = "e.g., A.";
-
-            // Program
-            var lblProg = new Label
+            var contentPanel = new Panel
             {
-                Text = "Program *:",
-                Location = new Point(leftCol, startY + 6),
-                Size = new Size(labelWidth, 24),
-                ForeColor = Color.FromArgb(64, 64, 64),
-                Font = new Font("Segoe UI", 9F, FontStyle.Bold)
+                Dock = DockStyle.Fill,
+                AutoScroll = true,
+                Padding = new Padding(24, 14, 24, 8),
+                BackColor = BackColor
             };
-            this.Controls.Add(lblProg);
+            var fieldsLayout = new TableLayoutPanel
+            {
+                Dock = DockStyle.Top,
+                AutoSize = true,
+                AutoSizeMode = AutoSizeMode.GrowAndShrink,
+                ColumnCount = 2,
+                RowCount = 11,
+                Margin = Padding.Empty,
+                Padding = Padding.Empty,
+                BackColor = Color.Transparent
+            };
+            fieldsLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 130F));
+            fieldsLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            for (int row = 0; row < 10; row++)
+                fieldsLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            fieldsLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
+            AddTextField(fieldsLayout, 0, "School ID *:", "e.g., 2021-12345", out txtSchoolID);
+            AddTextField(fieldsLayout, 1, "First Name *:", "First Name", out txtFirstName);
+            AddTextField(fieldsLayout, 2, "Last Name *:", "Last Name", out txtLastName);
+            AddTextField(fieldsLayout, 3, "M.I:", "e.g., A.", out txtMiddleInitial, 5);
+
+            AddFieldLabel(fieldsLayout, 4, "Program *:");
             cmbProgram = new Guna2ComboBox
             {
-                Location = new Point(leftCol + labelWidth, startY),
-                Size = new Size(inputWidth, 36),
-                BorderRadius = 4,
-                BorderColor = Color.FromArgb(200, 200, 200),
+                Dock = DockStyle.Top,
+                Height = 36,
+                Margin = new Padding(0, 5, 0, 5),
+                BorderRadius = 8,
+                BorderColor = Color.FromArgb(203, 213, 225),
+                FillColor = Color.White,
                 DropDownStyle = ComboBoxStyle.DropDownList
             };
             cmbProgram.Items.AddRange(ExcelDatabaseManager.ValidPrograms);
             cmbProgram.SelectedIndex = 0;
-            this.Controls.Add(cmbProgram);
-            startY += rowHeight;
+            fieldsLayout.Controls.Add(cmbProgram, 1, 4);
 
-            // Course Code
-            CreateRow("Course Code *:", ref startY, rowHeight, labelWidth, leftCol, out txtCourseCode);
-            txtCourseCode.PlaceholderText = "e.g., CPE 501 / CE 401";
+            AddTextField(fieldsLayout, 5, "Course Code *:", "e.g., CPE 501 / CE 401", out txtCourseCode);
+            AddTextField(fieldsLayout, 6, "Section:", "e.g., 4A / CPE-4A", out txtSection);
 
-            // Section
-            CreateRow("Section:", ref startY, rowHeight, labelWidth, leftCol, out txtSection);
-            txtSection.PlaceholderText = "e.g., 4A / CPE-4A";
-
-            // Status
-            var lblStatus = new Label
-            {
-                Text = "Status *:",
-                Location = new Point(leftCol, startY + 6),
-                Size = new Size(labelWidth, 24),
-                ForeColor = Color.FromArgb(64, 64, 64),
-                Font = new Font("Segoe UI", 9F, FontStyle.Bold)
-            };
-            this.Controls.Add(lblStatus);
-
+            AddFieldLabel(fieldsLayout, 7, "Status *:");
             cmbStatus = new Guna2ComboBox
             {
-                Location = new Point(leftCol + labelWidth, startY),
-                Size = new Size(inputWidth, 36),
-                BorderRadius = 4,
-                BorderColor = Color.FromArgb(200, 200, 200),
+                Dock = DockStyle.Top,
+                Height = 36,
+                Margin = new Padding(0, 5, 0, 5),
+                BorderRadius = 8,
+                BorderColor = Color.FromArgb(203, 213, 225),
+                FillColor = Color.White,
                 DropDownStyle = ComboBoxStyle.DropDownList
             };
             cmbStatus.Items.AddRange(new object[] { "Passed", "Completion" });
             cmbStatus.SelectedIndex = 1; // Default to Completion
-            this.Controls.Add(cmbStatus);
-            startY += rowHeight;
+            fieldsLayout.Controls.Add(cmbStatus, 1, 7);
 
-            // Term
-            CreateRow("Term:", ref startY, rowHeight, labelWidth, leftCol, out txtTerm);
-            txtTerm.PlaceholderText = "e.g., 1st Term / 2nd Term";
+            AddTextField(fieldsLayout, 8, "Term:", "e.g., 1st Term / 2nd Term", out txtTerm);
+            AddTextField(fieldsLayout, 9, "School Year:", "e.g., 2023-2024", out txtSchoolYear);
 
-            // School Year
-            CreateRow("School Year:", ref startY, rowHeight, labelWidth, leftCol, out txtSchoolYear);
-            txtSchoolYear.PlaceholderText = "e.g., 2023-2024";
-
-            // Error Label
             lblError = new Label
             {
-                Location = new Point(leftCol + labelWidth, startY),
-                Size = new Size(inputWidth, 30),
+                AutoSize = true,
+                Dock = DockStyle.Fill,
+                Margin = new Padding(0, 6, 0, 0),
                 ForeColor = Color.Crimson,
                 Font = new Font("Segoe UI", 8.5F, FontStyle.Regular),
                 Visible = false
             };
-            this.Controls.Add(lblError);
-            startY += 30;
+            fieldsLayout.Controls.Add(lblError, 0, 10);
+            fieldsLayout.SetColumnSpan(lblError, 2);
+            contentPanel.Controls.Add(fieldsLayout);
 
-            // Action Buttons
+            var actionPanel = new Panel
+            {
+                Dock = DockStyle.Fill,
+                BackColor = Color.FromArgb(241, 245, 249)
+            };
             btnSave = new Guna2Button
             {
                 Text = "Save Student",
-                Location = new Point(leftCol + labelWidth, startY),
-                Size = new Size(160, 38),
-                BorderRadius = 4,
-                FillColor = Color.FromArgb(39, 39, 39), // #272727
+                Size = new Size(145, 38),
+                BorderRadius = 8,
+                Animated = true,
+                FillColor = Color.FromArgb(39, 39, 39),
                 ForeColor = Color.White,
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold),
-                Cursor = Cursors.Hand
+                Cursor = Cursors.Hand,
+                Image = IconHelper.CreateCheckIcon(13, Color.White),
+                ImageSize = new Size(13, 13),
+                ImageAlign = HorizontalAlignment.Left,
+                ImageOffset = new Point(8, 0),
+                TextOffset = new Point(4, 0)
             };
             btnSave.Click += BtnSave_Click;
-            this.Controls.Add(btnSave);
-
             btnCancel = new Guna2Button
             {
                 Text = "Cancel",
-                Location = new Point(leftCol + labelWidth + 175, startY),
-                Size = new Size(160, 38),
-                BorderRadius = 4,
-                FillColor = Color.FromArgb(220, 220, 220),
-                ForeColor = Color.FromArgb(50, 50, 50),
+                Size = new Size(120, 38),
+                BorderRadius = 8,
+                Animated = true,
+                FillColor = Color.White,
+                BorderColor = Color.FromArgb(148, 163, 184),
+                BorderThickness = 1,
+                ForeColor = Color.FromArgb(51, 65, 85),
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold),
-                Cursor = Cursors.Hand
+                Cursor = Cursors.Hand,
+                Image = IconHelper.CreateCloseIcon(13, Color.FromArgb(51, 65, 85)),
+                ImageSize = new Size(13, 13),
+                ImageAlign = HorizontalAlignment.Left,
+                ImageOffset = new Point(8, 0),
+                TextOffset = new Point(4, 0)
             };
             btnCancel.Click += (s, e) => { this.DialogResult = DialogResult.Cancel; this.Close(); };
-            this.Controls.Add(btnCancel);
+            actionPanel.Controls.Add(btnSave);
+            actionPanel.Controls.Add(btnCancel);
+            actionPanel.Resize += (s, e) => LayoutActionButtons(actionPanel);
+
+            rootLayout.Controls.Add(headerPanel, 0, 0);
+            rootLayout.Controls.Add(contentPanel, 0, 1);
+            rootLayout.Controls.Add(actionPanel, 0, 2);
+            this.Controls.Add(rootLayout);
+            this.AcceptButton = btnSave;
+            this.CancelButton = btnCancel;
+            LayoutActionButtons(actionPanel);
         }
 
-        private void CreateRow(string labelText, ref int currentY, int height, int labelWidth, int leftCol, out Guna2TextBox textBox)
+        private static void AddFieldLabel(TableLayoutPanel layout, int row, string text)
         {
             var lbl = new Label
             {
-                Text = labelText,
-                Location = new Point(leftCol, currentY + 6),
-                Size = new Size(labelWidth, 24),
-                ForeColor = Color.FromArgb(64, 64, 64),
+                Text = text,
+                Dock = DockStyle.Fill,
+                TextAlign = ContentAlignment.MiddleLeft,
+                Margin = new Padding(0, 0, 10, 0),
+                ForeColor = Color.FromArgb(51, 65, 85),
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold)
             };
-            this.Controls.Add(lbl);
+            layout.Controls.Add(lbl, 0, row);
+        }
 
+        private static void AddTextField(TableLayoutPanel layout, int row, string label, string placeholder, out Guna2TextBox textBox, int maxLength = 0)
+        {
+            AddFieldLabel(layout, row, label);
             textBox = new Guna2TextBox
             {
-                Location = new Point(leftCol + labelWidth, currentY),
-                Size = new Size(340, 36),
-                BorderRadius = 4,
-                BorderColor = Color.FromArgb(200, 200, 200),
-                Font = new Font("Segoe UI", 9F)
+                Dock = DockStyle.Top,
+                Height = 36,
+                Margin = new Padding(0, 5, 0, 5),
+                BorderRadius = 8,
+                BorderColor = Color.FromArgb(203, 213, 225),
+                FillColor = Color.White,
+                Font = new Font("Segoe UI", 9F),
+                PlaceholderText = placeholder,
+                MaxLength = maxLength
             };
-            this.Controls.Add(textBox);
+            layout.Controls.Add(textBox, 1, row);
+        }
 
-            currentY += height;
+        private void LayoutActionButtons(Panel panel)
+        {
+            int y = Math.Max(0, (panel.ClientSize.Height - btnSave.Height) / 2);
+            btnCancel.Location = new Point(panel.ClientSize.Width - 24 - btnCancel.Width, y);
+            btnSave.Location = new Point(btnCancel.Left - 12 - btnSave.Width, y);
         }
 
         private void BtnSave_Click(object? sender, EventArgs e)
